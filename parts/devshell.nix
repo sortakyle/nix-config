@@ -2,7 +2,7 @@
   perSystem = {pkgs, ...}: {
     devShells = {
       default = pkgs.mkShell {
-        NIX_CONFIG = "extra-experimental-features = nix-command flakes";
+        NIX_CONFIG = "extra-experimental-features = nix-command flakes pipe-operators recursive-nix";
         buildInputs = with pkgs; [
           nix
           nix-diff

@@ -1,4 +1,4 @@
-{lib, config, ...}: {
+{lib, config, inputs, self, ...}: {
   options.hosts.nixos = lib.mkOption {
     type = lib.types.lazyAttrsOf (
       lib.types.submodule {
@@ -9,9 +9,16 @@
     );
   };
 
-  config.flake = {
+  config.flake = let
+    inherit (inputs.nixpkgs) lib;
+    inherit (self) outputs;
+    specialArgs = {inherit inputs outputs;};
+  in  {
     nixosConfigurations = lib.flip lib.mapAttrs config.hosts.nixos (
-      name: { module }: lib.nixosSystem { modules = [ module ]; }
+      name: { module }: lib.nixosSystem {
+        inherit specialArgs;
+        modules = [ module ];
+      }
     );
   };
 }
