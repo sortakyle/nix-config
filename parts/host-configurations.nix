@@ -58,7 +58,7 @@
             ++ v.modules; # home-manager modules import for the givnen user
         }) hostConfig.users;
 
-        specialArgs = { inherit hostConfig outputs; };
+        specialArgs = { inherit hostConfig inputs outputs; };
       in
       inputs.nixpkgs.lib.nixosSystem {
         inherit specialArgs;

@@ -16,6 +16,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    preservation.url = "github:nix-community/preservation";
   };
 
   outputs = {flake-parts, import-tree, ...} @ inputs:

@@ -18,7 +18,7 @@
       };
     };
 
-    users.user.kyle = {
+    users.users.kyle = {
       initialPassword = "bootstrap";
       hashedPasswordFile = lib.mkForce null;
     };
