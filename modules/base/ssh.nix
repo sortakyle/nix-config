@@ -20,14 +20,14 @@
         # Allow forwarding ports to everywhere
         GatewayPorts = "clientspecified";
       };
-    };
-
-    hostKeys = [
+      
+      hostKeys = [
       {
         path = "${lib.optionalString hasPersistDir "/persist"}/etc/ssh/ssh_host_ed25519_key";
         type = "ed25519";
       }
     ];
+    };
 
     environment.enableAllTerminfo = true;
   };
