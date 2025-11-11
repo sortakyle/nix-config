@@ -13,7 +13,7 @@
       predicate = pkg: builtins.elem (lib.getName pkg) config.nixpkgs.allowedUnfreePackages;
     in {
       nixos.base.nixpkgs.config.allowUnfreePredicate = predicate;
-      homeManager.base.nixpkgs.config.allowedUnfreePackages = predicate;
+      # homeManager.base.nixpkgs.config.allowedUnfreePackages = predicate;
     };
   };
 }

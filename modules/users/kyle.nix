@@ -1,10 +1,9 @@
 {
-  flake.modules.nixos.user-kyle = {pkgs, ...}: {
+  flake.modules.nixos.user-kyle = {
     users.users = {
       kyle = {
         uid = 1000;
         isNormalUser = true;
-        shell = pkgs.bashInteractive;
         extraGroups = ["wheel"];
         openssh.authorizedKeys.keys = [
           # TODO: get rid of these two

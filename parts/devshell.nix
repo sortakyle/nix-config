@@ -7,6 +7,7 @@
     make-shells.default.packages = with pkgs; [
       nh
       go-task
+      nixos-facter
     ];
   };
 }

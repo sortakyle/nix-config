@@ -52,19 +52,11 @@
     };
 
     flake.modules.homeManager.base = {
-      outputs,
       lib,
       pkgs,
       ...
     }: {
       home.sessionVariables.FLAKE = lib.mkDefault "~/.nix-config";
-
-      nixpkgs = {
-        overlays = builtins.attrValues outputs.overlays;
-        config = {
-          allowUnfree = true;
-        };
-      };
 
       nix = {
         inherit settings;
