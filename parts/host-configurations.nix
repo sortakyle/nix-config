@@ -1,4 +1,4 @@
-{lib, config, inputs, ...}: {
+{lib, config, inputs, self, ...}: {
   options.hosts.nixos = lib.mkOption {
     type = lib.types.attrsOf (
       lib.types.submodule (
@@ -45,6 +45,8 @@
     flake.nixosConfigurations = lib.mapAttrs (
       hostname: hostConfig:
       let
+        inherit (self) outputs;
+
         nixosModules =
           [config.flake.modules.nixos.base] # base module that applies to all hosts
           ++ hostConfig.modules # nixos modules imports
@@ -56,7 +58,7 @@
             ++ v.modules; # home-manager modules import for the givnen user
         }) hostConfig.users;
 
-        specialArgs = { inherit hostConfig; };
+        specialArgs = { inherit hostConfig outputs; };
       in
       inputs.nixpkgs.lib.nixosSystem {
         inherit specialArgs;
