@@ -1,20 +1,12 @@
-{
-  perSystem = {pkgs, ...}: {
-    devShells = {
-      default = pkgs.mkShell {
-        NIX_CONFIG = "extra-experimental-features = nix-command flakes pipe-operators recursive-nix";
-        buildInputs = with pkgs; [
-          nix
-          nix-diff
-          git
-          nh
+{inputs, ...}: {
+  imports = [
+    inputs.make-shell.flakeModules.default
+  ];
 
-          nil
-          alejandra
-          nixd
-          jq
-        ];
-      };
-    };
+  perSystem = {pkgs, ...}: {
+    make-shells.default.packages = with pkgs; [
+      nh
+      go-task
+    ];
   };
 }

@@ -27,6 +27,7 @@
     preservation.url = "github:nix-community/preservation";
     import-tree.url = "github:vic/import-tree";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    make-shell.url = "github:nicknovitski/make-shell";
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     lazy-apps = {
