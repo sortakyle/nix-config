@@ -1,67 +1,45 @@
 {
-  config = let
-    settings = {
-      keep-outputs = true;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-        "pipe-operators"
-        "recursive-nix"
-      ];
-      extra-system-features = ["recursive-nix"];
-      trusted-users = [
-        "root"
-        "@wheel"
-      ];
-      auto-optimise-store = true;
-      warn-dirty = false;
+  flake.modules.nixos.base = {outputs, ...}: {
+    nixpkgs = {
+      # global overlays
+      overlays = builtins.attrValues outputs.overlays;
     };
-  in {
-    flake.modules.nixos.base = {
-      inputs,
-      outputs,
-      lib,
-      hostConfig,
-      ...
-    }: {
-      nixpkgs = {
-        overlays = builtins.attrValues outputs.overlays;
-        config = {
-          allowUnfree = true;
-        };
-      };
 
-      nix = {
-        inherit settings;
+    nix = {
+      # Uncomment if I want to try lix: https://lix.systems/
+      #package = pkgs.lixPackageSets.latest.lix;
 
-        # Add each flake input to nix registry
-        registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-      };
-
-      preservation.preserveAt."/persist" = {
-        directories = ["/root/.local/share/nix"];
-        users =
-          lib.mapAttrs (_: _: {
-            directories = [
-              ".nix-config"
-              ".local/share/nix"
-            ];
-          })
-          hostConfig.users;
+      # From https://jackson.dev/post/nix-reasonable-defaults/
+      extraOptions = ''
+        connect-timeout = 5
+        log-lines = 50
+        min-free = 128000000
+        max-free = 1000000000
+        fallback = true
+      '';
+      optimise.automatic = true;
+      settings = {
+        auto-optimise-store = true;
+        trusted-users = [
+          "root"
+          "@wheel"
+        ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+        warn-dirty = false;
+        tarball-ttl = 60 * 60 * 24;
+        builders-use-substitutes = true;
+        use-xdg-base-directories = true;
       };
     };
 
-    flake.modules.homeManager.base = {
-      lib,
-      pkgs,
-      ...
-    }: {
-      home.sessionVariables.FLAKE = lib.mkDefault "~/.nix-config";
-
-      nix = {
-        inherit settings;
-        package = lib.mkDefault pkgs.nix;
-      };
+    # Instead of using nix.gc, we are using nh clean
+    programs.nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 8d --keep 3";
     };
   };
 }

@@ -1,11 +1,16 @@
 {
-  flake.modules.homeManager.base = {lib, ...}: {
-    home = {
-      stateVersion = lib.mkDefault "25.05";
-      sessionPath = ["$HOME/.local/bin"];
-      sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
-    };
-
+  flake.modules.homeManager.base = {
     programs.home-manager.enable = true;
+
+    # Unsure if actually needed, commenting out for now
+    #home.sessionPath = [ "$HOME/.local/bin" ];
+
+    services = {
+      home-manager.autoExpire = {
+        enable = true;
+        frequency = "weekly";
+        store.cleanup = true;
+      };
+    };
   };
 }

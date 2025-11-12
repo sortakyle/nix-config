@@ -1,6 +1,7 @@
 {
   nixConfig = {
-    abort-on-warn = true;
+    # TODO: reenable once lazy-apps fixes warning
+    #abort-on-warn = true;
     allow-import-from-derivation = false;
   };
 
@@ -37,6 +38,11 @@
 
     disko = {
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

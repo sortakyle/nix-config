@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.base = {
-    # Don't allow mutaiton of users outside configs
+    # Don't allow mutation of users outside configs
     users.mutableUsers = false;
   };
 }
