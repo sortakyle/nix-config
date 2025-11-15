@@ -2,6 +2,6 @@
 version: "3"
 tasks:
   iso:
-    desc: Build ISO Image
+    desc: Build ISO Image [REBUILD=false]
     cmds:
-      - nix build .#nixosConfigurations.iso.config.system.build.isoImage
+      - nix build .#nixosConfigurations.iso.config.system.build.isoImage {{ if eq "true" .REBUILD }}--rebuild{{ end }}

@@ -9,7 +9,7 @@
     inherit (config.networking) hostName;
     excludeHosts = ["iso"];
     hosts = lib.attrsets.filterAttrs (n: _v: !builtins.elem n excludeHosts) outputs.nixosConfigurations;
-    pubKey = host: "../../hosts/${host}/ssh_host_ed25519_key.pub";
+    pubKey = host: ../../hosts/${host}/ssh_host_ed25519_key.pub;
 
     hasPersistDir = config.preservation.enable;
   in {

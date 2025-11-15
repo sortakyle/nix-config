@@ -8,6 +8,9 @@
       nh
       go-task
       nixos-facter
+      ssh-to-age
+      rsync
+      disko
     ];
   };
 }

@@ -32,6 +32,7 @@
           "*.toml"
           "*.svg"
           "*.xml"
+          "*.pub"
           "*/.gitignore"
           "_to_migrate/*"
           "LICENSE"

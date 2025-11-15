@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+tasks:
+  ssh:
+    desc: Generate the ssh keys for the remote host
+    requires:
+      vars:
+        - TARGET
+        - HOSTNAME
+    vars:
+      SSH_PORT: '{{.SSH_PORT | default "22"}}'
+    silent: true
+    cmds:
+      - ssh -oport={{.SSH_PORT}} -t {{.TARGET}} "sudo ssh-keygen -t ed25519 -N \"\" -C \"root@{{.HOSTNAME}}\" -f ~/ssh_host_ed25519_key"
+      - ssh -oport={{.SSH_PORT}} -t {{.TARGET}} "cat ~/ssh_host_ed25519_key.pub" > ./hosts/{{.HOSTNAME}}/ssh_host_ed25519_key.pub
+      - echo "public key:"
+      - cat hosts/{{.HOSTNAME}}/ssh_host_ed25519_key.pub
+      - echo "age key:"
+      - ssh-to-age -i hosts/{{.HOSTNAME}}/ssh_host_ed25519_key.pub
+  repo:
+    desc: Setup the nix-config repo for the remote host
+    requires:
+      vars:
+        - TARGET
+        - HOSTNAME
+    vars:
+      TEMPDIR:
+        sh: mktemp -d
+      SSH_PORT: '{{.SSH_PORT | default "22"}}'
+    silent: true
+    cmds:
+      - mkdir {{.TEMPDIR}}/.nix-config
+      - cp -r ./ {{.TEMPDIR}}/.nix-config
+      - echo {{.TEMPDIR}}
+      - cd {{.TEMPDIR}}
+      - cmd: git branch | grep --color=auto -v 'main' | grep --color=auto -v "$(git branch --show-current)" | xargs git branch -D
+        ignore_error: true
+      - rsync -rz --exclude=result --exclude=.direnv --exclude=.pre-commit-config.yaml --rsh="ssh -oport={{.SSH_PORT}}" "{{.TEMPDIR}}/.nix-config" "{{.TARGET}}:~/"
+  hardware:
+    desc: Generate the facter json file for hardware configuration
+    requires:
+      vars:
+        - TARGET
+        - HOSTNAME
+    vars:
+      SSH_PORT: '{{.SSH_PORT | default "22"}}'
+    cmds:
+      - ssh -oport={{.SSH_PORT}} -t {{.TARGET}} "sudo nix run nixpkgs#nixos-facter -- -o ~/facter.json"
+      - ssh -oport={{.SSH_PORT}} -t {{.TARGET}} "sudo cat ~/facter.json" > ./hosts/{{.HOSTNAME}}/facter.json
+  disk:
+    desc: Partition the disks based on disko configuration
+    prompt: This will reformat all target disks in the disko config... Do you want to continue?
+    requires:
+      vars:
+        - HOSTNAME
+    cmds:
+      - disko --mode destroy,format,mount --flake .#nixosConfigurations.{{.HOSTNAME}} --dry-run

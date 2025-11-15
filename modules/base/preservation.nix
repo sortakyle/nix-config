@@ -69,11 +69,12 @@
         hostConfig.users;
     };
 
+    # must be group users & mode 0755 for it to work correctly
     systemd.tmpfiles.settings.preservation = let
       paths = user: let
         permission = {
           inherit user;
-          group = user;
+          group = "users";
           mode = "0755";
         };
       in {

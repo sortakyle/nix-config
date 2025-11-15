@@ -1,9 +1,5 @@
 {
-  hosts.nixos.iso.module = {
-    pkgs,
-    lib,
-    ...
-  }: {
+  hosts.nixos.iso.module = {lib, ...}: {
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
     isoImage = {
@@ -37,11 +33,6 @@
     services.resolved.fallbackDns = [
       "1.1.1.1"
       "2606:4700:4700::1111"
-    ];
-
-    environment.systemPackages = with pkgs; [
-      yq-go
-      sanoid
     ];
   };
 }
