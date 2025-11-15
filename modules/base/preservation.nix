@@ -13,25 +13,23 @@
       ncdu
     ];
 
+    # See https://nixos.org/manual/nixos/stable/#ch-system-state for the OS recommended persistence
     preservation.preserveAt."/persist" = {
       directories = [
         "/etc/NetworkManager/system-connections"
-        "/etc/nix/inputs"
 
         # system-core
         "/var/log"
         "/var/lib/nixos"
         "/var/lib/systemd"
-        {
-          directory = "/var/lib/private";
-          mode = "0700";
-        }
 
         # containers
         "/var/lib/containers"
+        "/var/lib/cni"
 
         # virtualization
         "/var/lib/libvirt"
+        "/var/lib/qemu"
 
         # network
         "/var/lib/bluetooth"
@@ -66,9 +64,6 @@
             ".local/share/nix"
             ".local/state/home-manager"
             ".local/state/nix/profiles"
-
-            # language package managers
-            ".local/bin"
           ];
         })
         hostConfig.users;

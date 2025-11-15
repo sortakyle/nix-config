@@ -23,7 +23,7 @@
 ## Insipred by
 
 - https://github.com/hyperparabolic/nix-config
+- https://github.com/drupol/infra
 - https://github.com/mightyiam/infra
 - https://codeberg.org/quasigod/nixconfig
-- https://github.com/drupol/infra
 - https://github.com/ryan4yin/nix-config
