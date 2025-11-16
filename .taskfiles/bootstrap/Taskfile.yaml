@@ -54,3 +54,31 @@ tasks:
         - HOSTNAME
     cmds:
       - sudo disko --mode destroy,format,mount --flake .#{{.HOSTNAME}} --yes-wipe-all-disks
+  install:
+    desc: Move ssh keys + nix-config to persist directory and then run the nixos-install [USER=kyle] [UID=1000]
+    requires:
+      vars:
+        - HOSTNAME
+    vars:
+      SSH_KEY: ~/ssh_host_ed25519_key
+      USER: '{{.USER | default "kyle"}}'
+      UID: "{{.UID | default 1000}}"
+      NIX_CONFIG_DIR: "/mnt/persist/home/{{.USER}}/.nix-config"
+    preconditions:
+      - test -f {{.SSH_KEY}}
+      - test -f {{.SSH_KEY}}.pub
+      - test $(stat -c '%U' {{.SSH_KEY}}) = root
+      - test $(stat -c '%a' {{.SSH_KEY}}) -eq 600
+    silent: true
+    cmds:
+      - echo "persisting ssh keys..."
+      - mkdir -p "/mnt/persist/etc/ssh"
+      - mv "{{.SSH_KEY}}" "/mnt/persist/etc/ssh/ssh_host_ed25519_key"
+      - mv "{{.SSH_KEY}}.pub" "/mnt/persist/etc/ssh/ssh_host_ed25519_key.pub"
+      - echo "Moving nix-config repo to user home..."
+      - mkdir -p "/mnt/persist/home/{{.USER}}"
+      - chown {{.UID}}:{{.UID}} "/mnt/persist/home/{{.USER}}"
+      - mv ../ "/mnt/persist/home/{{.USER}}/.nix-config"
+      - echo "Installing nixos..."
+      - echo "nixos-install --no-channel-copy --no-root-password --root '/mnt' --no-root-passwd --flake {{.NIX_CONFIG_DIR}}#{{.HOSTNAME}}"
+      - echo "Installation complete..."

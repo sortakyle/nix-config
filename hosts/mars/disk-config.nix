@@ -1,4 +1,11 @@
 {inputs, ...}: {
+  hosts.nixos.mars = {
+    zfs = {
+      enableRollback = true;
+      devices = ["/dev/sda"]; # VM so disk has no id
+    };
+  };
+
   hosts.nixos.mars.module = {
     imports = [inputs.disko.nixosModules.disko];
 
@@ -125,5 +132,15 @@
         };
       };
     };
+
+    # Unsure if these are actually needed
+    fileSystems."/nix".neededForBoot = true;
+    fileSystems."/var/log".neededForBoot = true;
+    fileSystems."/var/lib/nixos".neededForBoot = true;
+    fileSystems."/var/lib/systemd".neededForBoot = true;
+    fileSystems."/persist".neededForBoot = true;
+
+    # Enable snaoid automated snapshots on the persist dataset
+    services.sanoid.datasets."rpool/crypt/safe/persist".useTemplate = ["backup"];
   };
 }

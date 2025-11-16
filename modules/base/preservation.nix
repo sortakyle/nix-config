@@ -18,11 +18,6 @@
       directories = [
         "/etc/NetworkManager/system-connections"
 
-        # system-core
-        "/var/log"
-        "/var/lib/nixos"
-        "/var/lib/systemd"
-
         # containers
         "/var/lib/containers"
         "/var/lib/cni"
@@ -40,6 +35,11 @@
         # auto-generated machine ID
         {
           file = "/etc/machine-id";
+          inInitrd = true;
+        }
+        # used by system startup to discover ZFS pools
+        {
+          file = "/etc/zfs/zpool.cache";
           inInitrd = true;
         }
       ];
@@ -64,6 +64,9 @@
             ".local/share/nix"
             ".local/state/home-manager"
             ".local/state/nix/profiles"
+
+            # vscode server
+            ".vscode-server"
           ];
         })
         hostConfig.users;
