@@ -42,8 +42,4 @@
       clean.extraArgs = "--keep-since 8d --keep 3";
     };
   };
-
-  flake.modules.homeManager.base = {lib, ...}: {
-    home.sessionVariables.NH_OS_FLAKE = lib.mkDefault "~/.nix-config";
-  };
 }

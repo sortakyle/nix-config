@@ -15,10 +15,10 @@
         "version": 0,
         "video_memory": 0
       },
-      "pnp": true,
+      "pnp": false,
       "pnp_id": 0,
       "lba_support": false,
-      "low_memory_size": 654336,
+      "low_memory_size": 0,
       "smbios_version": 520
     },
     "bridge": [
@@ -63,7 +63,7 @@
         "sysfs_bus_id": "0000:00:1f.0",
         "detail": {
           "function": 0,
-          "command": 259,
+          "command": 7,
           "header_type": 1,
           "secondary_bus": 3,
           "prog_if": 0
@@ -115,7 +115,7 @@
         "sysfs_bus_id": "0000:00:01.0",
         "detail": {
           "function": 0,
-          "command": 259,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -163,7 +163,7 @@
         "sysfs_bus_id": "0000:00:1e.0",
         "detail": {
           "function": 0,
-          "command": 259,
+          "command": 7,
           "header_type": 1,
           "secondary_bus": 2,
           "prog_if": 0
@@ -219,7 +219,7 @@
         "sysfs_bus_id": "0000:00:00.0",
         "detail": {
           "function": 0,
-          "command": 259,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -275,7 +275,7 @@
         "sysfs_bus_id": "0000:00:01.3",
         "detail": {
           "function": 3,
-          "command": 259,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -327,7 +327,7 @@
         "sysfs_bus_id": "0000:00:05.0",
         "detail": {
           "function": 0,
-          "command": 263,
+          "command": 7,
           "header_type": 1,
           "secondary_bus": 1,
           "prog_if": 0
@@ -607,7 +607,7 @@
         "sysfs_bus_id": "0000:00:02.0",
         "detail": {
           "function": 0,
-          "command": 259,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -720,7 +720,7 @@
         "resources": [
           {
             "type": "phys_mem",
-            "range": 8589934592
+            "range": 17179869184
           }
         ]
       }
@@ -998,11 +998,11 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 55
+            "address": 53
           },
           {
             "type": "phwaddr",
-            "address": 55
+            "address": 53
           }
         ],
         "driver": "virtio_net",
@@ -1015,24 +1015,6 @@
     "network_interface": [
       {
         "index": 32,
-        "attached_to": 0,
-        "class_list": ["network_interface"],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": ["lo"]
-      },
-      {
-        "index": 33,
         "attached_to": 24,
         "class_list": ["network_interface"],
         "base_class": {
@@ -1052,17 +1034,35 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 55
+            "address": 53
           },
           {
             "type": "phwaddr",
-            "address": 55
+            "address": 53
           }
         ],
         "driver": "virtio_net",
         "driver_module": "virtio_net",
         "drivers": ["virtio_net"],
         "driver_modules": ["virtio_net"]
+      },
+      {
+        "index": 33,
+        "attached_to": 0,
+        "class_list": ["network_interface"],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": ["lo"]
       }
     ],
     "pci": [
@@ -1111,7 +1111,7 @@
         "resources": [
           {
             "type": "io",
-            "base": 61536,
+            "base": 61504,
             "range": 32,
             "enabled": true,
             "access": "read_write"
@@ -1119,7 +1119,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1287,
+          "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -1182,7 +1182,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 263,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -1248,7 +1248,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1287,
+          "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -1345,7 +1345,7 @@
         ],
         "detail": {
           "function": 1,
-          "command": 263,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 128
@@ -1468,7 +1468,7 @@
         "resources": [
           {
             "type": "io",
-            "base": 61504,
+            "base": 61536,
             "range": 32,
             "enabled": true,
             "access": "read_write"
@@ -1476,7 +1476,7 @@
         ],
         "detail": {
           "function": 2,
-          "command": 263,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "prog_if": 0
@@ -1501,9 +1501,9 @@
   "smbios": {
     "bios": {
       "handle": 0,
-      "vendor": "SeaBIOS",
-      "version": "rel-1.16.1-0-g3208b098f51a-prebuilt.qemu.org",
-      "date": "04/01/2014",
+      "vendor": "EFI Development Kit II / OVMF",
+      "version": "3.20230228-4~bpo11+1",
+      "date": "06/06/2023",
       "features": null,
       "start_address": "0xe8000",
       "rom_size": 65536
@@ -1560,7 +1560,7 @@
           "name": "Multi-bit",
           "value": 6
         },
-        "max_size": "0x800000",
+        "max_size": "0x1000000",
         "error_handle": 65534,
         "slots": 1
       }
@@ -1577,7 +1577,7 @@
         "handle": 4865,
         "array_handle": 4096,
         "start_address": "0x100000000",
-        "end_address": "0x240000000",
+        "end_address": "0x440000000",
         "part_width": 1
       }
     ],
@@ -1592,7 +1592,7 @@
         "error_handle": 65534,
         "width": 0,
         "ecc_bits": 0,
-        "size": 8388608,
+        "size": 16777216,
         "form_factor": {
           "hex": "0009",
           "name": "DIMM",

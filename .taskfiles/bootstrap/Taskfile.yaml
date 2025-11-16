@@ -13,15 +13,15 @@ tasks:
     cmds:
       - task: ssh
       - task: hardware
-  prepare:
-    desc: Prepares the host for nixos-install command (disk format, move ssh keys, move nix-config) [USER=kyle] [UID=1000]
+  install:
+    desc: Formats disks and installs NixOS (disk format, move ssh keys, move nix-config) [USER=kyle] [UID=1000]
     requires:
       vars:
         - HOSTNAME
     silent: true
     cmds:
       - task: disk
-      - task: install
+      - task: _install
   ssh:
     desc: Generate the ssh keys for the remote host [SSH_PORT=22]
     requires:
@@ -75,7 +75,7 @@ tasks:
         - HOSTNAME
     cmds:
       - sudo disko --mode destroy,format,mount --flake .#{{.HOSTNAME}} --yes-wipe-all-disks
-  install:
+  _install:
     desc: Move ssh keys + nix-config to persist directory and then run the nixos-install [USER=kyle] [UID=1000]
     requires:
       vars:
@@ -98,14 +98,11 @@ tasks:
       - echo "Moving nix-config repo to user home..."
       - sudo mkdir -p /mnt/persist/home/{{.USER}}
       - sudo chown {{.UID}}:{{.UID}} /mnt/persist/home/{{.USER}}
-      - task: _mv-config
-      - echo "To install nixos, run:"
-      - echo "sudo nixos-install --no-channel-copy --no-root-password --root '/mnt' --flake {{.NIX_CONFIG_DIR}}#{{.HOSTNAME}}"
-  _mv-config:
-    internal: true
-    dir: ~/
-    requires:
-      vars:
-        - USER
-    cmds:
-      - mv ~/.nix-config /mnt/persist/home/{{.USER}}/.nix-config
+      - rsync -a --delete .* /mnt/persist/home/{{.USER}}/.nix-config
+      - echo "Installing nixos..."
+      - sudo nixos-install --no-channel-copy --no-root-password --root '/mnt' --flake {{.NIX_CONFIG_DIR}}#{{.HOSTNAME}}
+      - echo "Unmounting everything..."
+      - sudo umount -lR /mnt
+      - sudo zfs umount -a
+      - echo "Exporting zpool..."
+      - sudo zpool export rpool
