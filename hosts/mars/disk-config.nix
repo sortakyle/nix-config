@@ -2,7 +2,7 @@
   hosts.nixos.mars = {
     zfs = {
       enableRollback = true;
-      devices = ["/dev/sda"]; # VM so disk has no id
+      devices = ["/dev/sda2"]; # VM so disk has no id
     };
   };
 

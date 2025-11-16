@@ -90,9 +90,8 @@ tasks:
       - sudo mkdir -p /mnt/persist/home/{{.USER}}
       - sudo chown {{.UID}}:{{.UID}} /mnt/persist/home/{{.USER}}
       - task: _mv-config
-      - echo "Installing nixos..."
-      - sudo nixos-install --no-channel-copy --no-root-password --root '/mnt' --flake {{.NIX_CONFIG_DIR}}#{{.HOSTNAME}}
-      - echo "Installation complete..."
+      - echo "To install nixos, run:"
+      - echo "sudo nixos-install --no-channel-copy --no-root-password --root '/mnt' --flake {{.NIX_CONFIG_DIR}}#{{.HOSTNAME}}"
   _mv-config:
     internal: true
     dir: ~/
