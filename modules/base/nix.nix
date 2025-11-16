@@ -36,6 +36,9 @@
         builders-use-substitutes = true;
         use-xdg-base-directories = true;
       };
+
+      # We do not want nix channel state files
+      channel.enable = false;
     };
 
     # Instead of using nix.gc, we are using nh clean
