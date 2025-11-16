@@ -11,4 +11,16 @@
       };
     };
   };
+
+  flake.modules.nixos.base = {
+    hostConfig,
+    lib,
+    ...
+  }: {
+    preservation.preserveAt."/persist".users =
+      lib.mapAttrs (_: _: {
+        directories = [".local/share/direnv"];
+      })
+      hostConfig.users;
+  };
 }
