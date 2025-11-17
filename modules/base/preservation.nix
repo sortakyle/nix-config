@@ -1,13 +1,10 @@
 {
   flake.modules.nixos.base = {
-    inputs,
     pkgs,
     lib,
     hostConfig,
     ...
   }: {
-    imports = [inputs.preservation.nixosModules.default];
-
     environment.systemPackages = with pkgs; [
       # `sudo ncdu -x /`
       ncdu
@@ -16,7 +13,7 @@
     # See https://nixos.org/manual/nixos/stable/#ch-system-state for the OS recommended persistence
     # - /boot special ESP partition
     # - /nix, /var/log, /var/lib/nixos, & /var/lib/systemd persistence expected to be managed by zfs
-    preservation.preserveAt."/persist" = {
+    preserve.system = {
       directories = [
         "/etc/NetworkManager/system-connections"
 
@@ -37,36 +34,32 @@
           inInitrd = true;
         }
       ];
-
-      users =
-        lib.mapAttrs (_: _: {
-          commonMountOptions = [
-            "x-gvfs-hide"
-          ];
-          directories = [
-            # XDG Directories
-            "Music"
-            "Pictures"
-            "Documents"
-            "Videos"
-            #"Downloads"
-
-            # nix-config repo
-            ".nix-config"
-
-            # Nix / Home Manager Profiles
-            ".local/share/nix"
-            ".local/state/home-manager"
-            ".local/state/nix/profiles"
-
-            # vscode server
-            ".vscode-server"
-          ];
-        })
-        hostConfig.users;
     };
 
-    # must be group users & mode 0755 for it to work correctly
+    preserve.users = {
+      directories = [
+        # XDG Directories
+        "Music"
+        "Pictures"
+        "Documents"
+        "Videos"
+        #"Downloads"
+
+        # nix-config repo
+        ".nix-config"
+
+        # Nix / Home Manager Profiles
+        ".local/share/nix"
+        ".local/state/home-manager"
+        ".local/state/nix/profiles"
+
+        # vscode server
+        ".vscode-server"
+      ];
+    };
+
+    # Note: https://github.com/nix-community/preservation/issues/20
+    # must be group users & mode 0755 for it to generate without conflicts
     systemd.tmpfiles.settings.preservation = let
       paths = user: let
         permission = {
@@ -83,9 +76,8 @@
     in
       lib.mergeAttrsList (lib.attrsets.mapAttrsToList (name: _: (paths name)) hostConfig.users);
 
-    systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
-
     # let the service commit the transient ID to the persistent volume
+    systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
     systemd.services.systemd-machine-id-commit = {
       unitConfig.ConditionPathIsMountPoint = [
         ""

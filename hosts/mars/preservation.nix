@@ -1,5 +1,5 @@
 {
   hosts.nixos.mars.module = {
-    preservation.enable = true;
+    preserve.enable = true;
   };
 }

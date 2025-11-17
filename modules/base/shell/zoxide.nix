@@ -1,14 +1,6 @@
 {
   flake.modules.nixos.base = {
-    hostConfig,
-    lib,
-    ...
-  }: {
-    preservation.preserveAt."/persist".users =
-      lib.mapAttrs (_: _: {
-        directories = [".local/share/zoxide"];
-      })
-      hostConfig.users;
+    preserve.users.directories = [".local/share/zoxide"];
   };
 
   flake.modules.homeManager.base = {

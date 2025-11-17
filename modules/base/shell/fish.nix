@@ -1,9 +1,5 @@
 {
   flake.modules.nixos.base = {
-    hostConfig,
-    lib,
-    ...
-  }: {
     programs.fish = {
       enable = true;
       vendor = {
@@ -13,11 +9,7 @@
       };
     };
 
-    preservation.preserveAt."/persist".users =
-      lib.mapAttrs (_: _: {
-        directories = [".local/share/fish"];
-      })
-      hostConfig.users;
+    preserve.users.directories = [".local/share/fish"];
   };
 
   flake.modules.homeManager.base = {

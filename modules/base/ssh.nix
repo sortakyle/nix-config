@@ -3,7 +3,6 @@
     lib,
     config,
     outputs,
-    hostConfig,
     ...
   }: let
     inherit (config.networking) hostName;
@@ -11,7 +10,7 @@
     hosts = lib.attrsets.filterAttrs (n: _v: !builtins.elem n excludeHosts) outputs.nixosConfigurations;
     pubKey = host: ../../hosts/${host}/ssh_host_ed25519_key.pub;
 
-    hasPersistDir = config.preservation.enable;
+    hasPersistDir = config.preserve.enable;
   in {
     services.openssh = {
       enable = true;
@@ -45,11 +44,7 @@
         hosts;
     };
 
-    preservation.preserveAt."/persist".users =
-      lib.mapAttrs (_: _: {
-        directories = [".ssh"];
-      })
-      hostConfig.users;
+    preserve.users.directories = [".ssh"];
   };
 
   flake.modules.homeManager.base = {outputs, ...}: let

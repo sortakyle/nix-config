@@ -1,14 +1,6 @@
 {
   flake.modules.nixos.base = {
-    hostConfig,
-    lib,
-    ...
-  }: {
-    preservation.preserveAt."/persist".users =
-      lib.mapAttrs (_: _: {
-        files = [".config/gh/hosts.yml"];
-      })
-      hostConfig.users;
+    preserve.users.files = [".config/gh/hosts.yml"];
   };
 
   flake.modules.homeManager.base = {

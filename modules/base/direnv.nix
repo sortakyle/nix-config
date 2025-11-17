@@ -1,4 +1,8 @@
 {
+  flake.modules.nixos.base = {
+    preserve.users.directories = [".local/share/direnv"];
+  };
+
   flake.modules.homeManager.base = {
     programs.direnv = {
       enable = true;
@@ -10,17 +14,5 @@
         };
       };
     };
-  };
-
-  flake.modules.nixos.base = {
-    hostConfig,
-    lib,
-    ...
-  }: {
-    preservation.preserveAt."/persist".users =
-      lib.mapAttrs (_: _: {
-        directories = [".local/share/direnv"];
-      })
-      hostConfig.users;
   };
 }
