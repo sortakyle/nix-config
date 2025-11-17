@@ -38,13 +38,6 @@
 
     preserve.users = {
       directories = [
-        # XDG Directories
-        "Music"
-        "Pictures"
-        "Documents"
-        "Videos"
-        #"Downloads"
-
         # nix-config repo
         ".nix-config"
 
