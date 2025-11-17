@@ -1,5 +1,9 @@
 {
-  flake.modules.nixos.base = {outputs, ...}: {
+  flake.modules.nixos.base = {
+    outputs,
+    pkgs,
+    ...
+  }: {
     nixpkgs = {
       # global overlays
       overlays = builtins.attrValues outputs.overlays;
@@ -47,5 +51,11 @@
       clean.enable = true;
       clean.extraArgs = "--keep-since 8d --keep 3";
     };
+
+    # Helpful CLI tools for managing Nix
+    environment.systemPackages = with pkgs; [
+      dix
+      nix-output-monitor
+    ];
   };
 }
