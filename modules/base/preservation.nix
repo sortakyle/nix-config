@@ -1,5 +1,10 @@
 {
-  flake.modules.nixos.base = {pkgs, ...}: {
+  flake.modules.nixos.base = {
+    pkgs,
+    lib,
+    hostConfig,
+    ...
+  }: {
     environment.systemPackages = with pkgs; [
       # `sudo ncdu -x /`
       ncdu
@@ -61,23 +66,20 @@
 
     # Note: https://github.com/nix-community/preservation/issues/20
     # must be group users & mode 0755 for it to generate without conflicts
-    #
-    # Commenting this out for now. Unsure it is necessary and/or if it can be simplified to
-    # just setting the permissings of the home directory
-    # systemd.tmpfiles.settings.preservation = let
-    #   paths = user: let
-    #     permission = {
-    #       inherit user;
-    #       group = "users";
-    #       mode = "0755";
-    #     };
-    #   in {
-    #     "/home/${user}/.config".d = permission;
-    #     "/home/${user}/.local".d = permission;
-    #     "/home/${user}/.local/share".d = permission;
-    #     "/home/${user}/.local/state".d = permission;
-    #   };
-    # in
-    #   lib.mergeAttrsList (lib.attrsets.mapAttrsToList (name: _: (paths name)) hostConfig.users);
+    systemd.tmpfiles.settings.preservation = let
+      paths = user: let
+        permission = {
+          inherit user;
+          group = "users";
+          mode = "0755";
+        };
+      in {
+        "/home/${user}/.config".d = permission;
+        "/home/${user}/.local".d = permission;
+        "/home/${user}/.local/share".d = permission;
+        "/home/${user}/.local/state".d = permission;
+      };
+    in
+      lib.mergeAttrsList (lib.attrsets.mapAttrsToList (name: _: (paths name)) hostConfig.users);
   };
 }
