@@ -26,6 +26,9 @@
         grep = "rg";
         babylon-wake = "wakeonlan -i 255.255.255.255 34:5a:60:61:8e:ea";
       };
+      shellAbbrs = {
+        find-root = "fd --one-file-system --base-directory / --type f --hidden --exclude \"{tmp}\"";
+      };
     };
   };
 }

@@ -11,6 +11,7 @@
         bat # cat alternative with auto pager
         dust # du alternative
         eza # ls alternative
+        fd # find alternative
         fselect # file finder with sql-ish syntax
         glances # system monitor
         jq # json parsing
