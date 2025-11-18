@@ -16,11 +16,7 @@
     preserve.system = {
       directories = [
         "/etc/NetworkManager/system-connections"
-
-        # network
-        "/var/lib/bluetooth"
         "/var/lib/NetworkManager"
-        "/var/lib/iwd"
       ];
       files = [
         # auto-generated machine ID
