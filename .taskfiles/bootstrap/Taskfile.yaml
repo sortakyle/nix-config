@@ -13,15 +13,6 @@ tasks:
     cmds:
       - task: ssh
       - task: hardware
-  install:
-    desc: Formats disks and installs NixOS (disk format, move ssh keys, move nix-config) [USER=kyle] [UID=1000]
-    requires:
-      vars:
-        - HOSTNAME
-    silent: true
-    cmds:
-      - task: disk
-      - task: _install
   ssh:
     desc: Generate the ssh keys for the remote host [SSH_PORT=22]
     requires:
@@ -75,7 +66,7 @@ tasks:
         - HOSTNAME
     cmds:
       - sudo disko --mode destroy,format,mount --flake .#{{.HOSTNAME}} --yes-wipe-all-disks
-  _install:
+  install:
     desc: Move ssh keys + nix-config to persist directory and then run the nixos-install [USER=kyle] [UID=1000]
     requires:
       vars:
