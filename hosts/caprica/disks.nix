@@ -1,12 +1,12 @@
 {inputs, ...}: let
-  bootDisk = "/dev/disk/by-id/"; # TODO
-  zfsDisk1 = "/dev/disk/by-id/"; # TODO
-  zfsDisk2 = "/dev/disk/by-id/"; # TODO
+  bootDisk = "/dev/disk/by-id/nvme-INTEL_MEMPEK1W016GA_PHBT720602KA016D";
+  zfsDisk1 = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7KGNU0YA15710X";
+  zfsDisk2 = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_4TB_S7KGNU0YA16589Y";
 in {
   hosts.nixos.caprica = {
     zfs = {
       enableRollback = true;
-      devices = [zfsDisk1 zfsDisk2]; # TODO: populate with by-id references
+      devices = [zfsDisk1 zfsDisk2];
     };
   };
 
@@ -16,7 +16,7 @@ in {
     disko.devices = {
       disk.bootDisk = {
         type = "disk";
-        device = bootDisk; # TODO
+        device = bootDisk;
         content = {
           type = "gpt";
           partitions = {
@@ -46,7 +46,7 @@ in {
 
       disk.disk1 = {
         type = "disk";
-        device = zfsDisk1; # TODO
+        device = zfsDisk1;
         content = {
           type = "gpt";
           partitions = {
@@ -63,7 +63,7 @@ in {
 
       disk.disk2 = {
         type = "disk";
-        device = zfsDisk2; # TODO
+        device = zfsDisk2;
         content = {
           type = "gpt";
           partitions = {
