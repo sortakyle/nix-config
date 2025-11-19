@@ -7,7 +7,7 @@
     };
   };
 
-  flake.modules.homeManager.desktop = {
+  flake.modules.homeManager.desktop = {pkgs, ...}: {
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       QT_QPA_PLATFORM = "wayland";
@@ -26,5 +26,9 @@
 
     # TODO: temporary
     programs.kitty.enable = true;
+    programs.firefox = {
+      enable = true;
+      package = pkgs.firefox-bin;
+    };
   };
 }
