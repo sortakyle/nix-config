@@ -2,9 +2,9 @@
   hosts.nixos.caprica.modules = with config.flake.modules.nixos; [
     user-kyle
     zfs
-    password-manager
     desktop
     development
+    messaging
   ];
 
   hosts.nixos.caprica.users = {
@@ -12,6 +12,7 @@
       user-kyle
       desktop
       development
+      messaging
     ];
   };
 }

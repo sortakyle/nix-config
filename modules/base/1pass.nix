@@ -1,8 +1,6 @@
 {
-  flake.modules.nixos.password-manager = {
+  flake.modules.nixos.base = {
     programs._1password.enable = true;
-
-    # TODO: enable gui if desktop enabled?
 
     preserve.users.directories = [
       {
