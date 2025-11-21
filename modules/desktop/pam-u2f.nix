@@ -24,11 +24,11 @@
         hyprlock.u2fAuth = true;
         login.u2fAuth = true;
         login.rules.auth.u2f = {
-          control = lib.mkForce "required";
+          control = lib.mkForce "sufficient";
         };
         greetd.u2fAuth = true;
         greetd.rules.auth.u2f = {
-          control = lib.mkForce "required";
+          control = lib.mkForce "sufficient";
         };
         sudo.u2fAuth = true;
       };
