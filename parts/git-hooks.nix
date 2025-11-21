@@ -5,7 +5,7 @@
   ];
 
   perSystem = {config, ...}: {
-    # pre-commit.check.enable = false;
+    pre-commit.check.enable = true;
     make-shells.default.shellHook = config.pre-commit.shellHook;
   };
 }
