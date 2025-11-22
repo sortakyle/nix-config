@@ -6,6 +6,7 @@
     development
     messaging
     browser
+    gaming
   ];
 
   hosts.nixos.caprica.users = {
@@ -15,6 +16,7 @@
       development
       messaging
       browser
+      gaming
     ];
   };
 }
