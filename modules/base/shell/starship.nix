@@ -5,5 +5,7 @@
       package = pkgs.stable.starship;
       settings = {};
     };
+
+    stylix.targets.starship.enable = true;
   };
 }
