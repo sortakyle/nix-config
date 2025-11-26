@@ -2,14 +2,14 @@
   flake.modules.nixos.desktop = {pkgs, ...}: {
     xdg.portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-hyprland
-        xdg-desktop-portal-gtk
+      config.common.default = [
+        "gtk"
+        "gnome"
       ];
-      configPackages = [pkgs.hyprland];
-      config.hyprland = {
-        "org.freedesktop.impl.portal.ScreenCast" = "hyprland";
-      };
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk # for file picker / OpenURI
+        xdg-desktop-portal-gnome # for screensharing
+      ];
     };
 
     # User directories to preserve. Trying to keep a minimal set

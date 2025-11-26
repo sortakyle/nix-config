@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.desktop = {
+  flake.modules.nixos.desktop-hyprland = {
     programs.hyprland = {
       enable = true;
       withUWSM = true;
@@ -7,7 +7,7 @@
     };
   };
 
-  flake.modules.homeManager.desktop = {hostConfig, ...}: {
+  flake.modules.homeManager.desktop-hyprland = {hostConfig, ...}: {
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       QT_QPA_PLATFORM = "wayland";

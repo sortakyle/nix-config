@@ -57,8 +57,23 @@
     };
   };
 in {
-  hosts.options.monitors = lib.mkOption {
-    type = lib.types.listOf monitorOptions;
-    default = [];
+  hosts.options = {
+    # How displays should be configured on this host
+    monitors = lib.mkOption {
+      type = lib.types.listOf monitorOptions;
+      default = [];
+    };
+
+    # Which compositor to use
+    compositor = lib.mkOption {
+      type = lib.types.enum ["hyprland" "niri"];
+      default = "hyprland";
+    };
+
+    # Which shell environment to use (assumed compatible with compositor or environment will fail)
+    environment = lib.mkOption {
+      type = lib.types.enum ["dms" "noctalia" "simple"];
+      default = "simple";
+    };
   };
 }

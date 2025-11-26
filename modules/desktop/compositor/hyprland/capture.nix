@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop = {pkgs, ...}: {
+  flake.modules.homeManager.desktop-hyprland = {pkgs, ...}: {
     home.packages = with pkgs; [
       grim
       grimblast

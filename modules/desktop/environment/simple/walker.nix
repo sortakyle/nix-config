@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop = {inputs, ...}: {
+  flake.modules.homeManager.desktop-simple = {inputs, ...}: {
     imports = [inputs.walker.homeManagerModules.default];
 
     programs.walker = {
@@ -87,7 +87,7 @@
     };
   };
 
-  flake.modules.nixos.desktop = {
+  flake.modules.nixos.desktop-simple = {
     preserve.users.directories = [".cache/elephant/"];
   };
 }

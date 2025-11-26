@@ -35,7 +35,7 @@
     };
 
     sops.secrets.u2f-mappings = {
-      sopsFile = ../../secrets/u2f-mappings.sops.yaml;
+      sopsFile = ./u2f-mappings.sops.yaml;
       path = "/etc/u2f_mappings";
       mode = "0444";
     };
