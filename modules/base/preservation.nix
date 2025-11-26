@@ -2,7 +2,7 @@
   flake.modules.nixos.base = {
     pkgs,
     lib,
-    hostConfig,
+    host,
     ...
   }: {
     environment.systemPackages = with pkgs; [
@@ -77,6 +77,6 @@
         "/home/${user}/.mozilla".d = permission; # TODO: delete when moving to v147
       };
     in
-      lib.mergeAttrsList (lib.attrsets.mapAttrsToList (name: _: (paths name)) hostConfig.users);
+      lib.mergeAttrsList (lib.attrsets.mapAttrsToList (name: _: (paths name)) host.users);
   };
 }

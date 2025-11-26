@@ -1,7 +1,7 @@
 # This module wraps https://github.com/nix-community/preservation to:
 # 1. simplify syntax for defining preservation configuration
 # 2. set a universal preserveAt directory which only needs to be declared once
-# 3. leverages the hostConfig passed to flake.modules to configure multi-user persistence
+# 3. leverages the host config passed to flake.modules to configure multi-user persistence
 #
 # While it is in parts, it needs to be defined as a flake.module in order for it to be accessible
 # by other flake.modules. This file should contain only boilerplate and the sister file in
@@ -10,7 +10,7 @@
   flake.modules.nixos.base = {
     lib,
     config,
-    hostConfig,
+    host,
     ...
   }: let
     cfg = config.preserve;
@@ -63,7 +63,7 @@
             inherit (cfg.users) directories;
             inherit (cfg.users) files;
           })
-          hostConfig.users;
+          host.users;
       };
 
       # TODO: figure out a good way to templatize the systemd.tmpfiles.settings.preservation

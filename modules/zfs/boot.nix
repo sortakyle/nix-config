@@ -2,7 +2,7 @@
   flake.modules.nixos.zfs = {
     config,
     lib,
-    hostConfig,
+    host,
     utils,
     ...
   }: {
@@ -42,7 +42,7 @@
 
       systemd.services = {
         zfs-import-rpool-raw = let
-          devices = map (p: utils.escapeSystemdPath p + ".device") hostConfig.zfs.devices;
+          devices = map (p: utils.escapeSystemdPath p + ".device") host.zfs.devices;
         in {
           # Devices are added to 'wants' instead of 'requires' so that a degraded import may be
           # attempted if one of them times out. We want this to finish before

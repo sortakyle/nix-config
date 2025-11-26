@@ -7,7 +7,7 @@
     };
   };
 
-  flake.modules.homeManager.desktop-hyprland = {hostConfig, ...}: {
+  flake.modules.homeManager.desktop-hyprland = {host, ...}: {
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       QT_QPA_PLATFORM = "wayland";
@@ -60,7 +60,7 @@
         };
 
         monitor =
-          if builtins.length hostConfig.monitors > 0
+          if builtins.length host.monitors > 0
           then
             map (
               m: let
@@ -77,7 +77,7 @@
                 else ""
               }"
             )
-            hostConfig.monitors
+            host.monitors
           else [",highres,auto,1"];
 
         decoration = {

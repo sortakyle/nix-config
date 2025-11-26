@@ -1,15 +1,15 @@
 {config, ...}: {
-  flake.modules.nixos.desktop = {hostConfig, ...}: {
+  flake.modules.nixos.desktop = {host, ...}: {
     imports = [
-      config.flake.modules.nixos."desktop-${hostConfig.compositor}"
-      config.flake.modules.nixos."desktop-${hostConfig.environment}"
+      config.flake.modules.nixos."desktop-${host.compositor}"
+      config.flake.modules.nixos."desktop-${host.environment}"
     ];
   };
 
-  flake.modules.homeManager.desktop = {hostConfig, ...}: {
+  flake.modules.homeManager.desktop = {host, ...}: {
     imports = [
-      config.flake.modules.homeManager."desktop-${hostConfig.compositor}"
-      config.flake.modules.homeManager."desktop-${hostConfig.environment}"
+      config.flake.modules.homeManager."desktop-${host.compositor}"
+      config.flake.modules.homeManager."desktop-${host.environment}"
     ];
   };
 }

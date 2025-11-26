@@ -1,13 +1,13 @@
 {
   flake.modules.nixos.zfs = {
-    hostConfig,
+    host,
     lib,
     config,
     ...
   }: let
     rollbackSnapshot = "rpool/crypt/local/root@blank";
   in {
-    boot.initrd.systemd = lib.mkIf hostConfig.zfs.enableRollback {
+    boot.initrd.systemd = lib.mkIf host.zfs.enableRollback {
       services.zfs-rollback = {
         description = "Rollback ZFS root dataset to blank snapshot";
         wantedBy = ["initrd.target"];

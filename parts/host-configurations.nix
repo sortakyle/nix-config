@@ -49,15 +49,15 @@
   config = {
     flake.nixosConfigurations =
       lib.mapAttrs (
-        _hostname: hostConfig: let
+        _hostname: host: let
           inherit (self) outputs;
 
           nixosModules =
             [
               config.flake.modules.nixos.base
             ] # base module that applies to all hosts
-            ++ hostConfig.modules # nixos modules imports
-            ++ hostConfig.module.imports; # host specific module configuration
+            ++ host.modules # nixos modules imports
+            ++ host.module.imports; # host specific module configuration
 
           users =
             lib.mapAttrs (_username: v: {
@@ -67,13 +67,13 @@
                 ] # base module that applies to all hosts
                 ++ v.modules; # home-manager modules import for the givnen user
             })
-            hostConfig.users;
+            host.users;
 
           specialArgs =
             {
-              inherit hostConfig outputs; # not passing inputs, get from flake-parts module params
+              inherit host outputs; # not passing inputs, get from flake-parts module params
             }
-            // hostConfig.args;
+            // host.args;
         in
           inputs.nixpkgs.lib.nixosSystem {
             inherit specialArgs;
