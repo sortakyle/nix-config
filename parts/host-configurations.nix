@@ -86,6 +86,9 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.users = users;
+                  home-manager.sharedModules = [
+                    inputs.stylix.homeModules.stylix
+                  ];
                 }
               ];
           }

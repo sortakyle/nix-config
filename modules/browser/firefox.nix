@@ -38,7 +38,7 @@ in {
     };
 
     # Overlay NUR to enable unfree firefox addons (1pass)
-    nixpkgs.overlays = [inputs.nur.overlay];
+    nixpkgs.overlays = [inputs.nur.overlays.default];
   };
 
   flake.modules.homeManager.browser = {
