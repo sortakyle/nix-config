@@ -67,6 +67,11 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+
+    nur = {
+      url = "github:nix-community/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

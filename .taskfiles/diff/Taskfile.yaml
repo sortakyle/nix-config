@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+tasks:
+  snapshot:*:
+    desc: Create a snapshot of the root filesystem for diffing
+    silent: true
+    vars:
+      NAME: "{{index .MATCH 0}}"
+    cmds:
+      - sudo zfs snapshot rpool/crypt/local/root@{{.NAME}}
+  delete:*:
+    desc: Delete the snapshot created
+    silent: true
+    vars:
+      NAME: "{{index .MATCH 0}}"
+    cmds:
+      - sudo zfs destroy rpool/crypt/local/root@{{.NAME}}
+  view:*:
+    desc: View the diff
+    silent: true
+    vars:
+      NAME: "{{index .MATCH 0}}"
+    cmds:
+      - sudo zfs diff rpool/crypt/local/root@{{.NAME}}

@@ -134,7 +134,7 @@
 
       # General settings
       "ui.key.accelKey" = 17; # Set CTRL as master key
-      "intl.locale.requested" = "en-GB,en-US";
+      "intl.locale.requested" = "en-US";
       "browser.aboutConfig.showWarning" = lock-false;
       "browser.aboutwelcome.enabled" = lock-false;
       "browser.tabs.firefox-view" = lock-false;
@@ -176,7 +176,8 @@
       "extensions.getAddons.showPane" = lock-false;
       "extensions.htmlaboutaddons.recommendations.enabled" = lock-false;
       "extensions.extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
-      # "extensions.update.enabled" = false;
+      "extensions.update.enabled" = false;
+      "extensions.update.autoUpdateDefault" = false;
       "extensions.webcompat.enable_picture_in_picture_overrides" = true;
       "extensions.webcompat.enable_shims" = true;
       "extensions.webcompat.perform_injections" = true;
@@ -210,12 +211,8 @@
         placements = {
           widget-overflow-fixed-list = [];
           unified-extensions-area = [
-            # "extension_one-tab_com-browser-action"
+            "_d634138d-c276-4fc8-924b-40a0ea21d284_-browser-action"
             "ublock0_raymondhill_net-browser-action"
-            "firemonkey_eros_man-browser-action"
-            "addon_darkreader_org-browser-action"
-            "queryamoid_kaply_com-browser-action"
-            # "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
           ];
           nav-bar = [
             "back-button"
@@ -227,15 +224,15 @@
             "unified-extensions-button"
 
             # Extensions
-            "extension_one-tab_com-browser-action"
+            "_d634138d-c276-4fc8-924b-40a0ea21d284_-browser-action"
             "ublock0_raymondhill_net-browser-action"
-            "firemonkey_eros_man-browser-action"
-            "_c4b582ec-4343-438c-bda2-2f691c16c262_-browser-action"
-            # "addon_darkreader_org-browser-action"
-            # "queryamoid_kaply_com-browser-action"
-            # "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action"
           ];
           toolbar-menubar = ["menubar-items"];
+          seen = [
+            "developer-button"
+            "_d634138d-c276-4fc8-924b-40a0ea21d284_-browser-action"
+            "ublock0_raymondhill_net-browser-action"
+          ];
           TabsToolbar = [
             "firefox-view-button"
             "tabbrowser-tabs"

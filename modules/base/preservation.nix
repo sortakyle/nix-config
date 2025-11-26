@@ -74,6 +74,7 @@
         "/home/${user}/.local".d = permission;
         "/home/${user}/.local/share".d = permission;
         "/home/${user}/.local/state".d = permission;
+        "/home/${user}/.mozilla".d = permission; # TODO: delete when moving to v147
       };
     in
       lib.mergeAttrsList (lib.attrsets.mapAttrsToList (name: _: (paths name)) hostConfig.users);

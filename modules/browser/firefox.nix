@@ -1,47 +1,53 @@
-{
+{inputs, ...}: let
+  profile = "default";
+
+  # Generated from
+  # uuidgen --sha1 --namespace 630fcd67-0fe3-4d26-9998-ebd4f9179ab4 --name
+  extensionsMap = {
+    "uBlock0@raymondhill.net" = "f2dfe198-4359-520e-ad8d-dce5d072da82";
+    "{d634138d-c276-4fc8-924b-40a0ea21d284}" = "fcd36c08-28c7-54aa-b16d-15b9b4f94e86";
+  };
+  # extensionUuidList = builtins.attrValues extensionsMap;
+in {
+  flake.modules.nixos.browser = {
+    preserve.users = let
+      # TODO: move to .config/mozilla once 147 lands in stable (Jan 2026?)
+      prefix = ".mozilla/firefox/${profile}";
+    in {
+      # simplifying to just persiting the whole profile for now
+      directories = ["${prefix}"];
+      # directories = [
+      #   # this will persist the IndexDB data for extensions + all sites visited
+      #   # Alternative is is manually calculating the extension uuids and leveraging that.
+      #   # I have a working version of this solution, but not sure if that is the best path forward
+      #   "${prefix}/storage/default/"
+      # ];
+
+      # files = [
+      #   "${prefix}/cookies.sqlite"
+      #   "${prefix}/favicons.sqlite"
+      #   "${prefix}/permissions.sqlite"
+      #   "${prefix}/content-prefs.sqlite"
+      #   "${prefix}/places.sqlite"
+      #   "${prefix}/storage.sqlite"
+      #   # These two files should not be necessary to persist and instead declaritively defined.
+      #   # I have been unable to get a consistent solution for generating them
+      #   "${prefix}/prefs.js"
+      #   "${prefix}/extension-settings.json"
+      # ];
+    };
+
+    # Overlay NUR to enable unfree firefox addons (1pass)
+    nixpkgs.overlays = [inputs.nur.overlay];
+  };
+
   flake.modules.homeManager.browser = {
-    pkgs,
     lib,
+    pkgs,
     ...
   }: {
     home.sessionVariables = {
       BROWSER = lib.mkDefault "firefox";
-    };
-
-    programs.firefox = {
-      enable = true;
-      package = pkgs.firefox-bin;
-      profiles.default = {
-        id = 0;
-        extensions.force = lib.mkForce true;
-
-        extraConfig = ''
-          lockPref("extensions.activeThemeID", "{8446b178-c865-4f5c-8ccc-1d7887811ae3}");
-          lockPref("extensions.formautofill.addresses.enabled", false);
-          lockPref("extensions.formautofill.creditCards.enabled", false);
-          lockPref("dom.security.https_only_mode_pbm", true);
-          lockPref("dom.security.https_only_mode_error_page_user_suggestions", true);
-          lockPref("browser.firefox-view.feature-tour", "{\"screen\":\"\",\"complete\":true}");
-          lockPref("identity.fxaccounts.enabled", false);
-          lockPref("browser.tabs.firefox-view-next", false);
-          lockPref("privacy.sanitize.sanitizeOnShutdown", false);
-          lockPref("privacy.clearOnShutdown.cache", true);
-          lockPref("privacy.clearOnShutdown.cookies", false);
-          lockPref("privacy.clearOnShutdown.offlineApps", false);
-          lockPref("browser.sessionstore.privacy_level", 0);
-          lockPref("floorp.browser.sidebar.enable", false);
-          lockPref("geo.enabled", false);
-          lockPref("media.navigator.enabled", false);
-          lockPref("dom.event.clipboardevents.enabled", false);
-          lockPref("dom.event.contextmenu.enabled", false);
-          lockPref("dom.battery.enabled", false);
-          lockPref("extensions.enabledScopes", 15);
-          lockPref("extensions.autoDisableScopes", 0);
-          lockPref("browser.newtabpage.activity-stream.floorp.newtab.imagecredit.hide", true);
-          lockPref("browser.newtabpage.activity-stream.floorp.newtab.releasenote.hide", true);
-          lockPref("browser.search.separatePrivateDefault", true);
-        '';
-      };
     };
 
     xdg.mimeApps.defaultApplications = {
@@ -51,22 +57,116 @@
       "x-scheme-handler/https" = ["firefox.desktop"];
     };
 
-    stylix.targets.firefox = {
+    programs.firefox = {
       enable = true;
-      colorTheme.enable = true;
-      profileNames = ["default"];
-    };
-  };
+      package = pkgs.firefox-bin;
 
-  flake.modules.nixos.browser = {
-    # TODO: move to xdg with v147 (.config/mozilla/...)
-    preserve.users.files = [
-      ".mozilla/firefox/default/cookies.sqlite"
-      ".mozilla/firefox/default/favicons.sqlite"
-      ".mozilla/firefox/default/permissions.sqlite"
-      ".mozilla/firefox/default/content-prefs.sqlite"
-      ".mozilla/firefox/default/places.sqlite"
-      ".mozilla/firefox/default/storage.sqlite"
-    ];
+      policies = {
+        EnableTrackingProtection = {
+          Value = true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
+        HardwareAcceleration = true;
+        FirefoxHome = {
+          Search = false;
+          TopSites = false;
+          SponsoredTopSites = false;
+          Highlights = false;
+          Pocket = false;
+          SponsoredPocket = false;
+          Snippets = false;
+          Locked = false;
+        };
+      };
+
+      profiles.${profile} = {
+        containersForce = true;
+
+        # disable default search engines, make kagi default
+        search = {
+          force = true;
+          default = "kagi";
+          engines = {
+            # don't need these default ones
+            amazondotcom-us.metaData.hidden = true;
+            bing.metaData.hidden = true;
+            ebay.metaData.hidden = true;
+            google.metaData.hidden = true;
+            kagi = {
+              name = "Kagi";
+              urls = [{template = "https://kagi.com/search?q={searchTerms}";}];
+              iconMapObj."32" = "https://kagi.com/favicon.ico";
+              definedAliases = ["@k"];
+            };
+          };
+        };
+
+        extensions = {
+          force = true;
+          packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            ublock-origin
+            onepassword-password-manager
+          ];
+        };
+
+        settings = {
+          # First launch
+          "app.normandy.enabled" = false;
+          "app.normandy.api_url" = "";
+          "browser.aboutwelcome.enabled" = false;
+          "browser.rights.3.shown" = false;
+
+          # New tab page junk
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+          "browser.newtabpage.activity-stream.feeds.weatherfeed" = false;
+          "browser.newtabpage.activity-stream.showSponsored" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+          "browser.newtabpage.activity-stream.showWeather" = false;
+          "browser.newtabpage.activity-stream.system.showSponsored" = false;
+          "browser.newtabpage.activity-stream.system.showWeather" = false;
+          "browser.newtabpage.activity-stream.weather.locationSearchEnabled" = false;
+
+          # Search junk
+          "browser.urlbar.scotchBonnet.enableOverride" = true;
+          "browser.urlbar.suggest.topsites" = false;
+          "browser.urlbar.suggest.trending" = false;
+          "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
+          "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+          "browser.urlbar.suggest.yelp" = false;
+
+          # Addons junk
+          "extensions.htmlaboutaddons.recommendations.enabled" = false;
+
+          # Pocket junk
+          "browser.urlbar.suggest.pocket" = false;
+          "extensions.pocket.enabled" = false;
+
+          # Prevent Firefox from warning before going to about:config
+          "browser.aboutConfig.showWarning" = false;
+
+          # Don't try to store passwords
+          "signon.rememberSignons" = false;
+
+          # Don't worry about missing session files (deleted via impermanence)
+          "browser.sessionstore.max_resumed_crashes" = -1;
+
+          # Prevent Firefox from suggesting to re-open tabs from last session
+          "browser.startup.couldRestoreSession.count" = -1;
+
+          # Default Ctrl-F to highlight all results by default
+          "findbar.highlightAll" = true;
+
+          # pre-configure extension UUIDs (allows persisting only extension IndexDBs)
+          "extensions.webextensions.uuids" = extensionsMap;
+
+          # auto-enable extensions
+          "extensions.autoDisableScopes" = 0;
+          "extensions.enabledScopes" = 15;
+          "extensions.allowPrivateBrowsingByDefault" = true;
+        };
+      };
+    };
   };
 }
