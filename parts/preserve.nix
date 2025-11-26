@@ -6,9 +6,8 @@
 # While it is in parts, it needs to be defined as a flake.module in order for it to be accessible
 # by other flake.modules. This file should contain only boilerplate and the sister file in
 # modules/base declares and specific base preservation configuration.
-{
+{inputs, ...}: {
   flake.modules.nixos.base = {
-    inputs,
     lib,
     config,
     hostConfig,

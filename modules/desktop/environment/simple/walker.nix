@@ -1,5 +1,5 @@
-{
-  flake.modules.homeManager.desktop-simple = {inputs, ...}: {
+{inputs, ...}: {
+  flake.modules.homeManager.desktop-simple = {
     imports = [inputs.walker.homeManagerModules.default];
 
     programs.walker = {

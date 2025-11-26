@@ -71,7 +71,7 @@
 
           specialArgs =
             {
-              inherit hostConfig inputs outputs;
+              inherit hostConfig outputs; # not passing inputs, get from flake-parts module params
             }
             // hostConfig.args;
         in

@@ -1,5 +1,5 @@
-{
-  hosts.nixos.caprica.module = {inputs, ...}: {
+{inputs, ...}: {
+  hosts.nixos.caprica.module = {
     imports = [inputs.nixos-facter-modules.nixosModules.facter];
     facter.reportPath = ./facter.json;
 

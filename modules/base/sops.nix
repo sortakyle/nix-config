@@ -1,9 +1,5 @@
-{
-  flake.modules.nixos.base = {
-    inputs,
-    config,
-    ...
-  }: let
+{inputs, ...}: {
+  flake.modules.nixos.base = {config, ...}: let
     isEd25519 = k: k.type == "ed25519";
     getKeyPath = k: k.path;
     keys = builtins.filter isEd25519 config.services.openssh.hostKeys;
