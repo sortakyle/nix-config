@@ -72,7 +72,11 @@ in {
 
     # Which shell environment to use (assumed compatible with compositor or environment will fail)
     environment = lib.mkOption {
-      type = lib.types.enum ["dms" "noctalia" "simple"];
+      type = lib.types.enum [
+        "simple"
+        "dms"
+        "noctalia"
+      ];
       default = "simple";
     };
   };

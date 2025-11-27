@@ -53,6 +53,7 @@
           "files.insertFinalNewline" = true;
           "files.trimFinalNewlines" = true;
           "files.trimTrailingWhitespace" = true;
+          "files.enableTrash" = false;
           "git.allowForcePush" = true;
           "git.autofetch" = true;
           "git.autoStash" = true;

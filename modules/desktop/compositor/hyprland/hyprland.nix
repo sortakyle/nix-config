@@ -13,6 +13,9 @@
       QT_QPA_PLATFORM = "wayland";
       SDL_VIDEODRIVER = "wayland";
       XDG_SESSION_TYPE = "wayland";
+      ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      QT_QPA_PLATFORMTHEME = "gtk3";
+      QT_QPA_PLATFORMTHEME_QT6 = "gtk3";
     };
 
     stylix.targets = {
@@ -162,6 +165,7 @@
 
         windowrulev2 = [
           "idleinhibit fullscreen, class:^(firefox)$"
+          "float, class:^(org.quickshell)$"
         ];
 
         xwayland.force_zero_scaling = true;

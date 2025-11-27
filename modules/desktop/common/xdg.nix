@@ -38,6 +38,14 @@
         name = "micro";
         noDisplay = true;
       };
+      qt5ct = {
+        name = "qt6ct";
+        noDisplay = true;
+      };
+      qt6ct = {
+        name = "qt6ct";
+        noDisplay = true;
+      };
     };
   };
 }
