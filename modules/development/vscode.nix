@@ -8,6 +8,8 @@
     lib,
     ...
   }: {
+    stylix.targets.vscode.enable = true;
+
     programs.vscode = {
       enable = true;
       mutableExtensionsDir = false;
@@ -97,7 +99,6 @@
           "window.titleBarStyle" = "custom";
           "window.zoomLevel" = 0;
           "workbench.colorCustomizations" = {};
-          "workbench.colorTheme" = "GitHub Dark Default";
           "workbench.commandPalette.experimental.suggestCommands" = true;
           "workbench.editor.enablePreview" = true; # Prevents temporary editor tabs
           "workbench.editor.highlightModifiedTabs" = true;
