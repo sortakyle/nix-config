@@ -29,6 +29,7 @@
           "*.face"
           "*.fish"
           "*.png"
+          "*.jpg"
           "*.toml"
           "*.svg"
           "*.xml"

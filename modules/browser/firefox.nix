@@ -57,6 +57,12 @@ in {
       "x-scheme-handler/https" = ["firefox.desktop"];
     };
 
+    stylix.targets.firefox = {
+      enable = true;
+      colorTheme.enable = true;
+      profileNames = [profile];
+    };
+
     programs.firefox = {
       enable = true;
       package = pkgs.firefox-bin;

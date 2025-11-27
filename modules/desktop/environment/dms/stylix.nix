@@ -1,11 +1,38 @@
 {inputs, ...}: {
-  flake.modules.homeManager.desktop-dms = {
+  flake.modules.homeManager.desktop-dms = {pkgs, ...}: {
     stylix = {
       enable = true;
-      autoEnable = false;
       polarity = "dark";
 
-      base16Scheme = "${inputs.self}/modules/desktop/environment/dms/colors.yaml";
+      base16Scheme = "${inputs.tinted-schemes}/base24/catppuccin-macchiato.yaml";
+
+      cursor = {
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Ice";
+        size = 24;
+      };
+
+      fonts = {
+        monospace = {
+          name = "FiraCode Nerd Font";
+          package = pkgs.nerd-fonts.fira-code;
+        };
+        sansSerif = {
+          name = "Fira Sans";
+          package = pkgs.fira;
+        };
+        serif = {
+          name = "Fira Sans";
+          package = pkgs.fira;
+        };
+      };
+
+      iconTheme = {
+        enable = true;
+        dark = "Papirus-Dark";
+        light = "Papirus-Light";
+        package = pkgs.papirus-icon-theme;
+      };
     };
   };
 }

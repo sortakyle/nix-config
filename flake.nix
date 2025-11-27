@@ -56,6 +56,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    tinted-schemes = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
+    };
+
     elephant = {
       url = "github:abenz1267/elephant";
       inputs.nixpkgs.follows = "nixpkgs";
