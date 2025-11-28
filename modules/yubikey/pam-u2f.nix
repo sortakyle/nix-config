@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.desktop = {
+  flake.modules.nixos.yubikey = {
     pkgs,
     config,
     lib,
@@ -43,4 +43,6 @@
       mode = "0444";
     };
   };
+
+  flake.modules.homeManager.yubikey = {};
 }

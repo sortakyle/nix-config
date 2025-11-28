@@ -7,6 +7,7 @@
     messaging
     browser
     gaming
+    yubikey
   ];
 
   hosts.nixos.caprica.users = {
@@ -17,6 +18,7 @@
       messaging
       browser
       gaming
+      yubikey
     ];
   };
 }
