@@ -29,3 +29,5 @@
 - https://github.com/ryan4yin/nix-config
 - https://github.com/nazarewk-iac/nix-configs
 - https://github.com/linuxmobile/kaku
+- https://github.com/MaySeikatsu/nixos
+- https://github.com/kenanpelit/nixosc
