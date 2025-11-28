@@ -27,10 +27,6 @@
       systemd.enable = false;
 
       settings = {
-        bind = [
-          "$MOD, T, exec, app2unit -- ghostty"
-        ];
-
         bindr = [
           "$MOD, Super_L, exec, dms ipc call spotlight toggle"
         ];
