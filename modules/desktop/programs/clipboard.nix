@@ -11,6 +11,36 @@
       enable = true;
     };
 
+    # Alternative to copyq, simple script using fzf
+    home.packages = [
+      (pkgs.writeShellScriptBin "chist" ''
+        cliphist list | fzf --reverse | cliphist decode | wl-copy
+      '')
+    ];
+
+    # Remove/hide the copyq desktop entry (should only run as a service + keybinding)
+    xdg.desktopEntries = {
+      "com.github.hluk.copyq" = {
+        name = "CopyQ";
+        noDisplay = true;
+      };
+    };
+
+    # Wayland settings for copyq + history keybindings
+    wayland.windowManager.hyprland.settings = {
+      bind = [
+        "$MOD, V, exec, ghostty --class=floating.ghostty --confirm-close-surface=false -e chist"
+        "$MOD CTRL, V, exec, app2unit -- copyq toggle"
+      ];
+
+      windowrulev2 = [
+        "float,class:copyq"
+        "size 25% 80%,class:copyq"
+        "move 74% 10%,class:copyq"
+        "animation popout,class:copyq"
+      ];
+    };
+
     xdg.configFile."copyq/copyq.conf".text = ''
       # ============================================================================
       # General Settings
@@ -123,25 +153,5 @@
       itemtags\enabled=true
       itemtext\enabled=true
     '';
-
-    home.packages = [
-      (pkgs.writeShellScriptBin "chist" ''
-        cliphist list | fzf --reverse | cliphist decode | wl-copy
-      '')
-    ];
-
-    wayland.windowManager.hyprland.settings = {
-      bind = [
-        "$MOD, V, exec, ghostty --class=floating.ghostty --confirm-close-surface=false -e chist"
-        "$MOD CTRL, V, exec, app2unit -- copyq toggle"
-      ];
-
-      windowrulev2 = [
-        "float,class:copyq"
-        "size 25% 80%,class:copyq"
-        "move 74% 10%,class:copyq"
-        "animation popout,class:copyq"
-      ];
-    };
   };
 }
