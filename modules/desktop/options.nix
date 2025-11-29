@@ -79,5 +79,10 @@ in {
       ];
       default = "simple";
     };
+
+    wallpaper-directory = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+    };
   };
 }

@@ -60,5 +60,11 @@
         background-menu-open-as-root = false;
       };
     };
+
+    wayland.windowManager.hyprland.settings = {
+      bind = [
+        "$MOD, E, exec, app2unit -- nemo"
+      ];
+    };
   };
 }

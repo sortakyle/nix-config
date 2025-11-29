@@ -1,6 +1,8 @@
 {
   hosts.nixos.caprica = {
+    compositor = "hyprland";
     environment = "dms";
+    wallpaper-directory = "~/Pictures/Wallpapers/";
 
     monitors = [
       {
