@@ -24,7 +24,6 @@
       enable = true;
       settings = {
         "scrollback-limit" = 4294967295;
-        # "window-decoration" = false;
         "window-padding-x" = 20;
         "window-padding-y" = 20;
 
@@ -32,6 +31,9 @@
         window-decoration = "server";
         window-padding-color = "extend";
         window-padding-balance = true;
+        window-inherit-working-directory = true;
+        working-directory = "inherit";
+        gtk-single-instance = false;
       };
     };
 
