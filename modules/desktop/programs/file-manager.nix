@@ -21,7 +21,10 @@
     # use dconf2nix to extract configured preferences
     dconf.settings = {
       "org/cinnamon/desktop/applications/terminal" = {
+        # TODO: this should use xdg-terminal-exec instead, but have problems with this
+        # and ghostty due to gtk-single-instance
         exec = "ghostty";
+        exec-arg = "--window-inherit-working-directory=true";
       };
 
       "org/nemo/plugins" = {
