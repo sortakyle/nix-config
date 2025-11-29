@@ -8,6 +8,11 @@
     lib,
     ...
   }: {
+    home.sessionVariables = {
+      EDITOR = "code";
+      VISUAL = "code";
+    };
+
     stylix.targets.vscode.enable = false;
 
     programs.vscode = {

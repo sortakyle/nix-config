@@ -6,6 +6,12 @@
   };
 
   flake.modules.homeManager.desktop = {pkgs, ...}: {
+    programs.yazi = {
+      enable = true;
+      shellWrapperName = "y";
+    };
+    stylix.targets.yazi.enable = true;
+
     xdg.desktopEntries.nemo = {
       name = "Nemo";
       exec = "${pkgs.nemo-with-extensions}/bin/nemo";
@@ -15,6 +21,7 @@
 
     xdg.mimeApps.defaultApplications = {
       "inode/directory" = ["nemo.desktop"];
+      "inode/mount-point" = ["nemo.desktop"]; # preservation makes some directories show up as mount points
       "application/x-gnome-saved-search" = ["nemo.desktop"];
     };
 
