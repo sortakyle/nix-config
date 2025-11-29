@@ -33,16 +33,22 @@
       ];
 
       bind = [
-        # Kill Window
+        # Core Bindings
         "$MOD, Q, killactive"
+        "$MOD, F, fullscreen"
+        "$MOD, Space, togglefloating"
+        "$MOD, X, togglesplit,"
+        "$MOD, P, pseudo,"
+        "$MOD, G, togglegroup"
 
         # Scroll switch between workspaces on a monitor
         "$MOD, mouse_down, workspace, e+1"
         "$MOD, mouse_up, workspace, e-1"
 
         # Swap to next/prev position
-        # "$MOD, Tab, swapnext"
-        # "$MOD SHIFT, Tab, swapnext prev"
+        "$MOD, TAB, cyclenext"
+        "$MOD, TAB, bringactivetotop"
+        "$MOD, TAB, changegroupactive"
 
         # Move Window or Group (arrow keys & hjkl)
         "$MOD SHIFT, LEFT,   movewindoworgroup, l"
@@ -63,14 +69,6 @@
         "$MOD, J,      movefocus, d"
         "$MOD, L,      movefocus, r"
         "$MOD, H,      movefocus, l"
-
-        # Toggle Float
-        "$MOD, Space, togglefloating"
-
-        # Toggle Fullscreen
-        "$MOD, F, fullscreen"
-
-        # lock screen / logout
       ];
 
       binde = [
