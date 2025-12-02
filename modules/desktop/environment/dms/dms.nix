@@ -8,6 +8,10 @@
   flake.modules.homeManager.desktop-dms = {
     imports = [inputs.dankMaterialShell.homeModules.dankMaterialShell.default];
 
+    home.sessionVariables = {
+      DMS_HIDE_TRAYIDS = "copyq";
+    };
+
     programs.dankMaterialShell = {
       enable = true;
 

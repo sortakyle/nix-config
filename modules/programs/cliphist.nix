@@ -29,7 +29,7 @@
     # Wayland settings for copyq + history keybindings
     wayland.windowManager.hyprland.settings = {
       bind = [
-        "$MOD, V, exec, ghostty --class=floating.ghostty --confirm-close-surface=false -e chist"
+        "$MOD, V, exec, ghostty --class=floating.terminal --confirm-close-surface=false -e chist"
         "$MOD CTRL, V, exec, app2unit -- copyq toggle"
       ];
 

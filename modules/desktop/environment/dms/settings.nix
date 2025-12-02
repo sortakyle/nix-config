@@ -127,13 +127,13 @@
         notifications = [
           {
             name = "DP-2";
-            model = "PG32UCDM";
+            # model = "PG32UCDM";
           }
         ];
         toast = [
           {
             name = "DP-2";
-            model = "PG32UCDM";
+            # model = "PG32UCDM";
           }
         ];
         systemTray = ["all"];
@@ -151,7 +151,7 @@
           screenPreferences = [
             {
               name = "DP-2";
-              model = "PG32UCDM";
+              # model = "PG32UCDM";
             }
           ];
           leftWidgets = [

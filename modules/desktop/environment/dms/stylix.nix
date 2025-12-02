@@ -4,7 +4,7 @@
       enable = true;
       polarity = "dark";
 
-      base16Scheme = "${inputs.tinted-schemes}/base24/catppuccin-macchiato.yaml";
+      base16Scheme = "${inputs.tinted-schemes}/base24/catppuccin-mocha.yaml";
 
       cursor = {
         package = pkgs.bibata-cursors;

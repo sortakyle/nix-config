@@ -9,7 +9,7 @@
         name = "DP-2";
         width = 3840;
         height = 2160;
-        refreshRate = 120;
+        refreshRate = 240;
         primary = true;
         x = 0;
         y = 0;
@@ -18,7 +18,7 @@
         name = "DP-3";
         width = 3840;
         height = 2160;
-        refreshRate = 120;
+        refreshRate = 240;
         x = 3840;
         y = 0;
       }
@@ -26,7 +26,7 @@
         name = "DP-4";
         width = 3840;
         height = 2160;
-        refreshRate = 120;
+        refreshRate = 240;
         x = -3840;
         y = 0;
       }

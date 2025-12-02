@@ -8,7 +8,7 @@
       "$MOD" = "SUPER";
 
       input = {
-        # numlock_by_deafult = true;
+        numlock_by_default = true;
 
         # Must click a window to change focus, including floating windows
         follow_mouse = 2;

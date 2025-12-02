@@ -13,6 +13,7 @@
       VISUAL = "code";
     };
 
+    # Using the catppuccin vsc extension instead
     stylix.targets.vscode.enable = false;
 
     programs.vscode = {
@@ -107,7 +108,6 @@
           "workbench.commandPalette.experimental.suggestCommands" = true;
           "workbench.editor.enablePreview" = true; # Prevents temporary editor tabs
           "workbench.editor.highlightModifiedTabs" = true;
-          "workbench.iconTheme" = "material-icon-theme";
           "workbench.panel.defaultLocation" = "bottom";
           "workbench.startupEditor" = "none";
         };

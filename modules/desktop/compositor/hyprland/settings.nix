@@ -7,13 +7,6 @@
         # Cursor
         no_focus_fallback = true;
 
-        # Gaps
-        gaps_in = 5;
-        gaps_out = 5;
-
-        # Borders
-        border_size = 0;
-
         # Resize
         resize_on_border = false;
         hover_icon_on_border = false;
@@ -49,6 +42,7 @@
         # nice settings
         animate_mouse_windowdragging = false;
         key_press_enables_dpms = true;
+        middle_click_paste = false;
 
         # variable refresh rate
         vfr = true;
@@ -56,9 +50,6 @@
       };
 
       decoration = {
-        # Round borders
-        rounding = 8;
-
         # Shadow
         shadow = {
           enabled = true;
@@ -66,10 +57,6 @@
           render_power = 5;
           offset = "0 5";
         };
-
-        active_opacity = 1.0;
-        inactive_opacity = 0.9;
-        fullscreen_opacity = 1.0;
 
         blur = {
           enabled = true;
