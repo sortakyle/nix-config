@@ -49,53 +49,6 @@
         vrr = 1;
       };
 
-      decoration = {
-        # Shadow
-        shadow = {
-          enabled = true;
-          range = 40;
-          render_power = 5;
-          offset = "0 5";
-        };
-
-        blur = {
-          enabled = true;
-          new_optimizations = true;
-          ignore_opacity = true;
-          xray = false;
-          size = 6;
-          passes = 2;
-        };
-      };
-
-      animations = {
-        enabled = true;
-
-        bezier = [
-          "customBezier, 0.05, 0.9, 0.1, 1.05"
-          "easeoutquad, 0.25, 0.46, 0.45, 0.94"
-          "easeinoutcirc, 0.785, 0.135, 0.15, 0.86"
-        ];
-
-        animation = [
-          "border, 1, 5, easeoutquad"
-
-          "fadeIn, 1, 3, easeoutquad"
-          "fadeOut, 1, 3, easeoutquad"
-          "fadeLayers, 1, 3, easeoutquad"
-          "fadeSwitch, 1, 5, easeoutquad"
-
-          "layers, 1, 3, easeinoutcirc, slide"
-
-          "windowsIn, 1, 5, easeoutquad, slide"
-          "windowsOut, 1, 5, easeoutquad, slide"
-          "windowsMove, 1, 5, easeinoutcirc, slide"
-
-          "workspaces, 1, 3, easeinoutcirc, slideFade"
-          "specialWorkspace, 1, 3, easeinoutcirc, slideFade"
-        ];
-      };
-
       dwindle = {
         pseudotile = true;
         preserve_split = true;
