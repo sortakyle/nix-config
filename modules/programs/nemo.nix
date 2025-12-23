@@ -25,6 +25,19 @@
       "application/x-gnome-saved-search" = ["nemo.desktop"];
     };
 
+    home.file.".local/share/nemo/actions/vscode.nemo_action".text = ''
+      [Nemo Action]
+      Active=true
+      Name=Open in VS Code
+      Comment=Open Visual Studio Code in the current directory.
+      Exec=code %P
+      Icon-Name=com.visualstudio.code
+      Selection=none
+      Extensions=any;
+      Quote=double
+      Dependencies=code;
+    '';
+
     # use dconf2nix to extract configured preferences
     dconf.settings = {
       "org/cinnamon/desktop/applications/terminal" = {
