@@ -16,7 +16,7 @@
     preserve.system = {
       directories = [
         "/etc/NetworkManager/system-connections"
-        "/var/lib/NetworkManager"
+        # "/var/lib/NetworkManager"
       ];
       files = [
         # auto-generated machine ID
