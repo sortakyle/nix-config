@@ -6,6 +6,7 @@
   extensionsMap = {
     "uBlock0@raymondhill.net" = "f2dfe198-4359-520e-ad8d-dce5d072da82";
     "{d634138d-c276-4fc8-924b-40a0ea21d284}" = "fcd36c08-28c7-54aa-b16d-15b9b4f94e86";
+    "pipewire-screenaudio@icenjim" = "064aa80b-be44-546c-bf5f-97783f0773ee";
   };
   # extensionUuidList = builtins.attrValues extensionsMap;
 in {
@@ -114,6 +115,7 @@ in {
           packages = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin
             onepassword-password-manager
+            pipewire-screenaudio
           ];
         };
 
