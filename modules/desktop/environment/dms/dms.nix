@@ -24,7 +24,7 @@
       enableClipboard = true;
       enableVPN = false;
       enableBrightnessControl = false;
-      enableColorPicker = true;
+      enableColorPicker = false;
       enableDynamicTheming = false;
       enableAudioWavelength = true;
       enableCalendarEvents = false;

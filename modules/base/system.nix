@@ -12,9 +12,6 @@
         # (e.g. man configuration.nix or on https://search.nixos.org/options?&show=system.stateVersion&from=0&size=50&sort=relevance&type=packages&query=stateVersion).
         inherit stateVersion;
 
-        # See https://github.com/NixOS/nixpkgs/pull/415640
-        rebuild.enableNg = true;
-
         autoUpgrade = {
           enable = false;
           flake = "github:unleashurgeek/nix-config";
