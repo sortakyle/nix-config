@@ -15,6 +15,8 @@
         enable = true;
         icons.enable = true;
       };
+
+      hyprland.enable = true;
     };
 
     stylix.targets = {

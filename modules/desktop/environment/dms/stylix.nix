@@ -33,6 +33,14 @@
         light = "Papirus-Light";
         package = pkgs.papirus-icon-theme;
       };
+
+      targets = {
+        # hyprland.enable = true;
+        # hyprland.hyprpaper.enable = true;
+        gtk.enable = true;
+        nixos-icons.enable = true;
+        qt.enable = true;
+      };
     };
   };
 }
