@@ -57,6 +57,10 @@
         ];
       };
 
+      "org/nemo/desktop" = {
+        show-desktop-icons = false;
+      };
+
       "org/nemo/preferences" = {
         default-folder-viewer = "icon-view";
         "inherit-folder-viewer" = true;
@@ -77,6 +81,10 @@
     wayland.windowManager.hyprland.settings = {
       bind = [
         "$MOD, E, exec, app2unit -- nemo"
+      ];
+
+      windowrulev2 = [
+        "float, class:nemo,title:^(.* Properties)"
       ];
     };
   };
