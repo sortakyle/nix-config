@@ -13,6 +13,12 @@
       VISUAL = "code";
     };
 
+    xdg.mimeApps.defaultApplications = {
+      "text/plain" = ["code.desktop"];
+      "application/x-wine-extension-ini" = ["code.desktop"];
+      "x-scheme-handler/vscode" = ["code.desktop"];
+    };
+
     # Using the catppuccin vsc extension instead
     stylix.targets.vscode.enable = false;
 
