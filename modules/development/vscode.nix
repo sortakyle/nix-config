@@ -104,6 +104,7 @@
           "window.newWindowDimensions" = "inherit";
           "window.titleBarStyle" = "custom";
           "window.zoomLevel" = 0;
+          "window.confirmSaveUntitledWorkspace" = false;
           "workbench.colorCustomizations" = {};
           "workbench.commandPalette.experimental.suggestCommands" = true;
           "workbench.editor.enablePreview" = true; # Prevents temporary editor tabs
