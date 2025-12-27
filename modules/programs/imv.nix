@@ -1,0 +1,15 @@
+{
+  flake.modules.homeManager.programs = {pkgs, ...}: {
+    home.packages = with pkgs; [
+      imv
+    ];
+
+    xdg.mimeApps.defaultApplications = {
+      "image/*" = ["imv-dir.desktop"];
+      "image/jpeg" = ["imv-dir.desktop"];
+      "image/png" = ["imv-dir.desktop"];
+      "image/gif" = ["imv-dir.desktop"];
+      "image/webp" = ["imv-dir.desktop"];
+    };
+  };
+}
