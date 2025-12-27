@@ -5,7 +5,12 @@
     ];
   };
 
-  flake.modules.homeManager.programs = {pkgs, ...}: {
+  flake.modules.homeManager.programs = {
+    pkgs,
+    lib,
+    config,
+    ...
+  }: {
     programs.yazi = {
       enable = true;
       shellWrapperName = "y";
@@ -25,15 +30,26 @@
       "application/x-gnome-saved-search" = ["nemo.desktop"];
     };
 
-    home.file.".local/share/nemo/actions/vscode.nemo_action".text = ''
+    # Adds additional paths to the sidebar
+    xdg.configFile."gtk-3.0/bookmarks".text = ''
+      file://${config.home.homeDirectory}/.nix-config Nix
+    '';
+
+    # Disable Recent files
+    gtk.gtk3.extraConfig = {
+      gtk-recent-files-max-age = 0;
+      gtk-recent-files-limit = 0;
+    };
+
+    xdg.dataFile."nemo/actions/vscode.nemo_action".text = ''
       [Nemo Action]
       Active=true
       Name=Open in VS Code
       Comment=Open Visual Studio Code in the current directory.
-      Exec=code %P
+      Exec=code %F
       Icon-Name=com.visualstudio.code
-      Selection=none
-      Extensions=any;
+      Selection=any
+      Extensions=dir;
       Quote=double
       Dependencies=code;
     '';
@@ -71,6 +87,7 @@
         show-open-in-terminal-toolbar = false;
         show-reload-icon-toolbar = true;
         show-show-thumbnails-toolbar = false;
+        thumbnail-limit = lib.gvariant.mkUint64 34359738368;
       };
 
       "org/nemo/preferences/menu-config" = {
