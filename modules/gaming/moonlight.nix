@@ -18,6 +18,13 @@
         categories = ["Qt" "Game"];
       };
     };
+
+    # Hyprland configuration options + bindings
+    wayland.windowManager.hyprland.settings = {
+      windowrulev2 = [
+        "idleinhibit fullscreen, class:com.moonlight_stream.Moonlight"
+      ];
+    };
   };
 
   flake.modules.nixos.gaming = {
