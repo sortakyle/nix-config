@@ -20,6 +20,10 @@
     # alternatively can set it to NULL so XDG_DESKTOP_DIR is unset
     xdg.userDirs.desktop = "${config.home.homeDirectory}/.desktop";
 
+    home.sessionVariables = {
+      XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+    };
+
     # Hide the following desktop entries. Never want to launch these from a launcher
     xdg.desktopEntries = {
       uuctl = {
