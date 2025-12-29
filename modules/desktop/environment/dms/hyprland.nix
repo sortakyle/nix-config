@@ -90,6 +90,11 @@
 
         "idleinhibit fullscreen, class:^(firefox)$"
         "float, class:^(org.quickshell)$"
+
+        # Float, Pin, and remove opacity for Picture-in-Picture from browsers
+        "float, title:^(Picture-in-Picture)$, class:^(zen|zen-beta|floorp|firefox)$"
+        "pin, title:^(Picture-in-Picture)$, class:^(zen|zen-beta|floorp|firefox)$"
+        "opacity 1, title:^(Picture-in-Picture)$, class:^(zen|zen-beta|floorp|firefox)$"
       ];
     };
   };

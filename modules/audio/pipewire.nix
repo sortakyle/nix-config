@@ -55,9 +55,5 @@
     };
   };
 
-  flake.modules.homeManager.audio = {pkgs, ...}: {
-    home.packages = with pkgs; [
-      qpwgraph
-    ];
-  };
+  flake.modules.homeManager.audio = {};
 }
