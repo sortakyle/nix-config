@@ -56,6 +56,7 @@ in {
     in {
       "text/html" = browser;
       "text/xml" = browser;
+      "application/pdf" = browser;
       "application/xml" = browser;
       "application/xhtml+xml" = browser;
       "application/xhtml_xml" = browser;
