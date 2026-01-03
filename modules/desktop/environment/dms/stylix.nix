@@ -37,6 +37,9 @@
       targets = {
         # hyprland.enable = true;
         # hyprland.hyprpaper.enable = true;
+        gnome.enable = true;
+        gnome.colors.enable = true;
+        gnome.polarity.enable = true;
         gtk.enable = true;
         nixos-icons.enable = true;
         qt.enable = true;
