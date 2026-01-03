@@ -1,7 +1,7 @@
 {
   flake.modules.homeManager.programs = {pkgs, ...}: {
     home.packages = with pkgs; [
-      youtube-music
+      pear-desktop
     ];
 
     wayland.windowManager.hyprland.settings = {

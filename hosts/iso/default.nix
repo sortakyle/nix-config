@@ -32,7 +32,7 @@
       nameservers = [
         "192.168.1.1"
       ];
-      wireless.enable = false;
+      wireless.enable = lib.mkForce false;
     };
     services.resolved.fallbackDns = [
       "1.1.1.1"
