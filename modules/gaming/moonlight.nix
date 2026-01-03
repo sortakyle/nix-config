@@ -21,8 +21,8 @@
 
     # Hyprland configuration options + bindings
     wayland.windowManager.hyprland.settings = {
-      windowrulev2 = [
-        "idleinhibit fullscreen, class:com.moonlight_stream.Moonlight"
+      windowrule = [
+        "idle_inhibit fullscreen, match:class com.moonlight_stream.Moonlight"
       ];
     };
   };

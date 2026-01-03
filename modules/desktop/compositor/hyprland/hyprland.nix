@@ -24,8 +24,8 @@
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       QT_QPA_PLATFORM = "wayland";
       SDL_VIDEODRIVER = "wayland";
-      GDK_BACKEND = "wayland";
       XDG_SESSION_TYPE = "wayland";
+      #GDK_BACKEND = "wayland";
     };
 
     wayland.windowManager.hyprland = {

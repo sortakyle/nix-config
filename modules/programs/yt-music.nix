@@ -5,11 +5,8 @@
     ];
 
     wayland.windowManager.hyprland.settings = {
-      windowrulev2 = let
-        class = "com.github.th_ch.youtube_music";
-      in [
-        "float, class:${class}"
-        "animation popout, class:${class}"
+      windowrule = [
+        "float on, animation popout, match:class com.github.th_ch.youtube_music"
       ];
     };
   };

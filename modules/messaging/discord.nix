@@ -8,9 +8,8 @@
         "sleep 1 && app2unit -- discord"
       ];
 
-      windowrulev2 = [
-        "float, class:discord"
-        "size 2000 1200, class:discord"
+      windowrule = [
+        "float on, size 2000 1200, match:class discord"
       ];
     };
   };

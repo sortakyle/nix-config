@@ -33,11 +33,8 @@
         "$MOD CTRL, V, exec, app2unit -- copyq toggle"
       ];
 
-      windowrulev2 = [
-        "float,class:copyq"
-        "size 25% 80%,class:copyq"
-        "move 74% 10%,class:copyq"
-        "animation popout,class:copyq"
+      windowrule = [
+        "float on, size (monitor_w*0.25) (monitor_h*0.8), move ((monitor_w*0.74)) ((monitor_h*0.1)), animation popout, match:class copyq"
       ];
     };
 

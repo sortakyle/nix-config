@@ -100,8 +100,8 @@
         "$MOD, E, exec, app2unit -- nemo"
       ];
 
-      windowrulev2 = [
-        "float, class:nemo,title:^(.* Properties)"
+      windowrule = [
+        "float on, match:class nemo, match:title ^(.* Properties)"
       ];
     };
   };

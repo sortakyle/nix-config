@@ -74,27 +74,25 @@
       ];
 
       layerrule = [
-        "animation popin, dms:osd"
-        "abovelock, dms:osd"
+        "animation popin, match:namespace dms:osd"
+        "above_lock 1, match:namespace dms:osd"
 
-        "dimaround, dms:(color-picker|clipboard|spotlight|settings)"
-        "animation popin, dms:(color-picker|clipboard|spotlight|settings)"
+        "dim_around on, match:namespace dms:(color-picker|clipboard|spotlight|settings)"
+        "animation popin, match:namespace dms:(color-picker|clipboard|spotlight|settings)"
       ];
 
-      windowrulev2 = [
+      windowrule = [
         # Opacity Rules
-        "opacity 1.00 0.8, floating:0" # reduce opacity of inactive non-floating windows
-        "opacity 0.95 0.8, floating:1" # floating windows have less opacity when active
+        "opacity 1.00 0.8, match:float 0" # reduce opacity of inactive non-floating windows
+        "opacity 0.95 0.8, match:float 1" # floating windows have less opacity when active
 
         # Application opacity ruiles
 
-        "idleinhibit fullscreen, class:^(firefox)$"
-        "float, class:^(org.quickshell)$"
+        "idle_inhibit fullscreen, match:class ^(firefox)$"
+        "float on, match:class ^(org.quickshell)$"
 
         # Float, Pin, and remove opacity for Picture-in-Picture from browsers
-        "float, title:^(Picture-in-Picture)$, class:^(zen|zen-beta|floorp|firefox)$"
-        "pin, title:^(Picture-in-Picture)$, class:^(zen|zen-beta|floorp|firefox)$"
-        "opacity 1, title:^(Picture-in-Picture)$, class:^(zen|zen-beta|floorp|firefox)$"
+        "float on, pin on, opacity 1, match:title ^(Picture-in-Picture)$, match:class ^(zen|zen-beta|floorp|firefox)$"
       ];
     };
   };

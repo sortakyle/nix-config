@@ -30,8 +30,8 @@
         "sleep 1 && app2unit -s s -- 1password --silent"
       ];
 
-      windowrulev2 = [
-        "float, class:1password"
+      windowrule = [
+        "float on, match:class 1password"
       ];
 
       bind = [
