@@ -8,13 +8,20 @@
     home.packages = with pkgs; [
       reaper
 
+      # Audio plugins (LV2, VST2, VST3, LADSPA)
+      # distrho-ports
+      dexed
+      surge
+      # calf
+      eq10q
+      # lsp-plugins
+      dragonfly-reverb
+      # guitarix
+      # geonkick
+
       # broken, should be fixed in ~24 hrs https://github.com/NixOS/nixpkgs/pull/476467
       # yabridge
       # yabridgectl
-
-      surge
-      dexed
-      #noise-repellent
     ];
 
     xdg.configFile."REAPER" = {
