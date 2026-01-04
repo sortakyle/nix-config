@@ -103,5 +103,14 @@
 
     # Enable snaoid automated snapshots on the persist dataset
     services.sanoid.datasets."rpool/crypt/safe/persist".useTemplate = ["backup"];
+
+    # Attempting to hide these zfs devices from gvfs
+    services.udev.extraRules = ''
+      KERNEL=="zd0", SUBSYSTEM=="block", ENV{UDISKS_IGNORE}="1", ENV{UDISKS_PRESENTATION_HIDE}="1"
+      KERNEL=="nvme0n1p1", ENV{UDISKS_IGNORE}="1", ENV{UDISKS_PRESENTATION_HIDE}="1"
+      KERNEL=="nvme1n1p1", ENV{UDISKS_IGNORE}="1", ENV{UDISKS_PRESENTATION_HIDE}="1"
+      KERNEL=="nvme2n1p1", ENV{UDISKS_IGNORE}="1", ENV{UDISKS_PRESENTATION_HIDE}="1"
+      KERNEL=="nvme3n1p1", ENV{UDISKS_IGNORE}="1", ENV{UDISKS_PRESENTATION_HIDE}="1"
+    '';
   };
 }
