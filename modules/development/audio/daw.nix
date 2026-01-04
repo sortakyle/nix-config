@@ -10,9 +10,11 @@
       zrythm
 
       # Audio plugins (LV2, VST2, VST3, LADSPA)
-      # distrho-ports
+      distrho-ports
       dexed
       surge
+      vital
+      decent-sampler
       # calf
       eq10q
       # lsp-plugins
@@ -56,9 +58,11 @@
 
   flake.modules.nixos.development = {
     preserve.users.directories = [
-      ".config/REAPER"
       ".vst"
       ".vst3"
+      ".config/REAPER"
+      ".config/DecentSampler"
+      ".local/share/vital"
     ];
   };
 }
