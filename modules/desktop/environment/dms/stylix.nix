@@ -43,6 +43,10 @@
         gtk.enable = true;
         nixos-icons.enable = true;
         qt.enable = true;
+
+        # Turn on fonts from stylix
+        fontconfig.enable = true;
+        font-packages.enable = true;
       };
     };
   };

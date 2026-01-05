@@ -30,12 +30,14 @@
         enableUpdateCheck = false;
         extensions = with pkgs.vscode-extensions; [
           jnoortheen.nix-ide
+          ms-ceintl.vscode-language-pack-ja
         ];
         userSettings = {
           "[nix]" = {
             "editor.defaultFormatter" = "jnoortheen.nix-ide";
             "editor.formatOnSave" = true;
           };
+          "editor.fontFamily" = "'Fira Code','Noto Sans'";
           "editor.bracketPairColorization.enabled" = true;
           "editor.cursorSmoothCaretAnimation" = "on";
           "editor.guides.bracketPairs" = true;
@@ -68,6 +70,7 @@
           "files.trimFinalNewlines" = true;
           "files.trimTrailingWhitespace" = true;
           "files.enableTrash" = false;
+          "files.autoGuessEncoding" = true;
           "git.allowForcePush" = true;
           "git.autofetch" = true;
           "git.autoStash" = true;
