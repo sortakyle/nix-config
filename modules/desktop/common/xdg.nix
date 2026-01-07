@@ -4,6 +4,7 @@
     preserve.users.directories = [
       "Documents"
       "Pictures"
+      "Music"
       "Videos"
     ];
   };

@@ -8,6 +8,8 @@
         };
       }))
     ];
+
+    xdg.dataFile."OpenUtau/Templates/default.ustx".source = ./default.ustx;
   };
 
   flake.modules.nixos.development = {

@@ -34,6 +34,7 @@
           "*.svg"
           "*.xml"
           "*.pub"
+          "*.ustx"
           "*/.gitignore"
           "_to_migrate/*"
           "LICENSE"
