@@ -1,0 +1,19 @@
+--- source/pyin.h	2026-01-06 21:22:29.887002397 -0800
++++ sourch-patched/pyin.h	2026-01-06 21:24:08.522936337 -0800
+@@ -49,9 +49,16 @@
+   int nhop;         // hop size between consecutive frames
+ } pyin_config;
+
++#ifdef __cplusplus
++extern "C" {
++#endif
++
+ pyin_config pyin_init(int nhop);
+ int pyin_trange(int nq, FP_TYPE fmin, FP_TYPE fmax);
+ FP_TYPE* pyin_analyze(pyin_config param, FP_TYPE* x, int nx, FP_TYPE fs, int* nfrm);
+
++#ifdef __cplusplus
++}
+ #endif
+
++#endif
