@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.desktop-dms = {
-    programs.dankMaterialShell.default.settings = {
+    programs.dank-material-shell.settings = {
       # dark theme, Catppuccin Mauve
       # Can do custom themes, but need to map base16 theme to mutagen theme
       theme = "dark";

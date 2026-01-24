@@ -12,7 +12,7 @@
       # };
 
       # disables fallback. Always want to go through router DNS for homelab resolution
-      fallbackDns = [];
+      settings.Resolve.FallbackDNS = [];
     };
   };
 }

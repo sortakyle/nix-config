@@ -34,7 +34,7 @@
       ];
       wireless.enable = lib.mkForce false;
     };
-    services.resolved.fallbackDns = [
+    services.resolved.settings.Resolve.FallbackDNS = [
       "1.1.1.1"
       "2606:4700:4700::1111"
     ];

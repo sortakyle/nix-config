@@ -27,7 +27,7 @@
         };
       };
 
-      iconTheme = {
+      icons = {
         enable = true;
         dark = "Papirus-Dark";
         light = "Papirus-Light";

@@ -6,13 +6,13 @@
   };
 
   flake.modules.homeManager.desktop-dms = {
-    imports = [inputs.dankMaterialShell.homeModules.dankMaterialShell.default];
+    imports = [inputs.dankMaterialShell.homeModules.dank-material-shell];
 
     home.sessionVariables = {
       DMS_HIDE_TRAYIDS = "copyq";
     };
 
-    programs.dankMaterialShell = {
+    programs.dank-material-shell = {
       enable = true;
 
       systemd = {
@@ -21,14 +21,14 @@
       };
 
       enableSystemMonitoring = true;
-      enableClipboard = true;
+      # enableClipboard = true;
       enableVPN = false;
-      enableBrightnessControl = false;
-      enableColorPicker = false;
+      # enableBrightnessControl = false;
+      # enableColorPicker = false;
       enableDynamicTheming = false;
       enableAudioWavelength = true;
       enableCalendarEvents = false;
-      enableSystemSound = true;
+      # enableSystemSound = true;
     };
   };
 }

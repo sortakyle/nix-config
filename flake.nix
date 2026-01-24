@@ -1,7 +1,6 @@
 {
   nixConfig = {
-    # TODO: reenable once vscode-extensions fixes warning
-    # abort-on-warn = true;
+    abort-on-warn = true;
     allow-import-from-derivation = false;
   };
 
@@ -91,7 +90,6 @@
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.dgop.follows = "dgop";
     };
 
     noctalia = {
