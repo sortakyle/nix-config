@@ -14,8 +14,8 @@
 
       fonts = {
         monospace = {
-          name = "FiraCode Nerd Font";
-          package = pkgs.nerd-fonts.fira-code;
+          name = "Fira Code";
+          package = pkgs.fira-code;
         };
         sansSerif = {
           name = "Fira Sans";

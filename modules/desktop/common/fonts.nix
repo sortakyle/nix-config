@@ -1,6 +1,10 @@
 {
   flake.modules.nixos.desktop = {pkgs, ...}: {
     fonts.packages = with pkgs; [
+      # base latin fonts
+      fira
+      fira-code
+
       # icon fonts
       material-design-icons
       font-awesome
