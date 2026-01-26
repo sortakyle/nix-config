@@ -109,8 +109,8 @@
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} (import-tree [
-      ./hosts
-      ./modules
       ./parts
+      ./hosts
+      ./apps
     ]);
 }

@@ -7,8 +7,9 @@
       flavor = "mocha";
 
       # Applications that we want to use catppuccin instead of stylix
-      fish.enable = true;
       # vesktop.enable = true;
+      thunderbird.enable = true;
+      fish.enable = true;
       ghostty.enable = true;
       bat.enable = true;
       vscode.profiles.default = {
