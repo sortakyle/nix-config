@@ -35,8 +35,8 @@
           "*.xml"
           "*.pub"
           "*.ustx"
+          "*.colortheme"
           "*/.gitignore"
-          "_to_migrate/*"
           "LICENSE"
         ];
       };

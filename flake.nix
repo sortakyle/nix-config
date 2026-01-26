@@ -96,6 +96,11 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    reanix = {
+      url = "github:mrtnvgr/reanix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
