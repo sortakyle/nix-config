@@ -2,7 +2,9 @@
   inputs,
   importApply,
 }: {
-  flakeModules = {};
+  flakeModules = {
+    all = [];
+  };
 
   nixosModules = rec {
     preserve = importApply ./preserve {inherit inputs;};
@@ -12,5 +14,7 @@
     ];
   };
 
-  homeModules = {};
+  homeModules = {
+    all = [];
+  };
 }

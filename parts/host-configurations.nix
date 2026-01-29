@@ -3,7 +3,6 @@
   config,
   inputs,
   self,
-  flake-parts-lib,
   ...
 }: {
   options.hosts.nixos = lib.mkOption {
@@ -52,17 +51,14 @@
       lib.mapAttrs (
         _hostname: host: let
           inherit (self) outputs;
-          inherit (flake-parts-lib) importApply;
-
-          repoModules = import ./../modules {inherit inputs importApply;};
 
           nixosModules =
             [
-              config.flake.modules.nixos.base
+              config.flake.modules.nixos.modules # modules from this repo
+              config.flake.modules.nixos.base # the base module
             ] # base module that applies to all hosts
             ++ host.modules # nixos modules imports
-            ++ host.module.imports # host specific module configuration
-            ++ repoModules.nixosModules.all; # all nixosModules defined in the modules folder
+            ++ host.module.imports; # host specific module configuration
 
           users =
             lib.mapAttrs (_username: v: {
@@ -91,6 +87,9 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.users = users;
+                  home-manager.sharedModules = [
+                    config.flake.modules.homeManager.modules # modules from this repo
+                  ];
                 }
               ];
           }
