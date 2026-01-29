@@ -8,6 +8,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     systems.url = "github:nix-systems/default-linux";
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";

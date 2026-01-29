@@ -1,8 +1,4 @@
-{inputs, ...}: {
-  flake.modules.nixos.development = {
-    nixpkgs.overlays = [inputs.nur.overlays.default];
-  };
-
+{
   flake.modules.homeManager.development = {pkgs, ...}: {
     # programs.reanix.extraConfig = {
     #   "reaper.ini" = ''

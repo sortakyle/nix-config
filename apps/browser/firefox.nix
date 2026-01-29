@@ -1,4 +1,4 @@
-{inputs, ...}: let
+let
   profile = "default";
 
   # Generated from
@@ -37,9 +37,6 @@ in {
       #   "${prefix}/extension-settings.json"
       # ];
     };
-
-    # Overlay NUR to enable unfree firefox addons (1pass)
-    nixpkgs.overlays = [inputs.nur.overlays.default];
   };
 
   flake.modules.homeManager.browser = {
