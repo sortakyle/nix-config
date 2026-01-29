@@ -9,7 +9,17 @@
       }))
     ];
 
-    xdg.dataFile."OpenUtau/Templates/default.ustx".source = ./default.ustx;
+    xdg.dataFile = {
+      "OpenUtau/Templates/default.ustx".source = ./default.ustx;
+      "OpenUtau/Resamplers".source = let
+        combinedDrv = pkgs.buildEnv {
+          name = "openutau-resamplers";
+          paths = [
+            pkgs.local."openutau-resamplers/macres"
+          ];
+        };
+      in "${combinedDrv}/utau/resamplers";
+    };
 
     home.preserve.directories = [".local/share/OpenUtau"];
   };
