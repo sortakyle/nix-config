@@ -1,8 +1,4 @@
 {
-  flake.modules.nixos.base = {
-    preserve.users.files = [".config/gh/hosts.yml"];
-  };
-
   flake.modules.homeManager.base = {
     programs.gh = {
       enable = true;
@@ -10,5 +6,7 @@
         git_protocol = "ssh";
       };
     };
+
+    home.preserve.files = [".config/gh/hosts.yml"];
   };
 }

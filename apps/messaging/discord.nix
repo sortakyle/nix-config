@@ -12,12 +12,7 @@
         "float on, size 2000 1200, match:class discord"
       ];
     };
-  };
 
-  flake.modules.nixos.messaging = {
-    preserve.users.directories = [
-      ".config/vesktop"
-      ".config/discord"
-    ];
+    home.preserve.directories = [".config/discord"];
   };
 }

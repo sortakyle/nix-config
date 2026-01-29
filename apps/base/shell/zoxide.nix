@@ -1,8 +1,4 @@
 {
-  flake.modules.nixos.base = {
-    preserve.users.directories = [".local/share/zoxide"];
-  };
-
   flake.modules.homeManager.base = {
     programs.zoxide = {
       enable = true;
@@ -10,5 +6,7 @@
         "--cmd cd" # replaces "cd"
       ];
     };
+
+    home.preserve.directories = [".local/share/zoxide"];
   };
 }

@@ -1,9 +1,5 @@
 {inputs, ...}: {
-  flake.modules.nixos.desktop-dms = {
-    preserve.users.directories = [
-      ".config/DankMaterialShell"
-    ];
-  };
+  flake.modules.nixos.desktop-dms = {};
 
   flake.modules.homeManager.desktop-dms = {
     imports = [inputs.dankMaterialShell.homeModules.dank-material-shell];
@@ -30,5 +26,7 @@
       enableCalendarEvents = false;
       # enableSystemSound = true;
     };
+
+    home.preserve.directories = [".config/DankMaterialShell"];
   };
 }

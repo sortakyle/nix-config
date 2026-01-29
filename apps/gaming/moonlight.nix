@@ -25,9 +25,7 @@
         "idle_inhibit fullscreen, match:class com.moonlight_stream.Moonlight"
       ];
     };
-  };
 
-  flake.modules.nixos.gaming = {
-    preserve.users.files = [".config/Moonlight Game Streaming Project/Moonlight.conf"];
+    home.preserve.files = [".config/Moonlight Game Streaming Project/Moonlight.conf"];
   };
 }

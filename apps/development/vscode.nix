@@ -1,8 +1,4 @@
 {
-  flake.modules.nixos.development = {
-    # preserve.users.directories = [".vscode"];
-  };
-
   flake.modules.homeManager.development = {
     pkgs,
     lib,

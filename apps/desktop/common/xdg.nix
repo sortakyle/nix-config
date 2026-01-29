@@ -1,14 +1,4 @@
 {
-  flake.modules.nixos.desktop = {
-    # User directories to preserve. Trying to keep a minimal set
-    preserve.users.directories = [
-      "Documents"
-      "Pictures"
-      "Music"
-      "Videos"
-    ];
-  };
-
   flake.modules.homeManager.desktop = {config, ...}: {
     # Manages file associations with default programs
     xdg.mimeApps.enable = true;
@@ -48,5 +38,13 @@
         noDisplay = true;
       };
     };
+
+    # User directories to preserve. Trying to keep a minimal set
+    home.preserve.directories = [
+      "Documents"
+      "Pictures"
+      "Music"
+      "Videos"
+    ];
   };
 }

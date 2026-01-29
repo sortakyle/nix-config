@@ -27,10 +27,8 @@
       LV2_PATH = make "lv2";
       LADSPA_PATH = make "ladspa";
     };
-  };
 
-  flake.modules.nixos.development = {
-    preserve.users.directories = [
+    home.preserve.directories = [
       ".local/share/vital"
     ];
   };

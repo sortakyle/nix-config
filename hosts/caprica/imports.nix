@@ -5,8 +5,6 @@
     zfs
     desktop
     programs
-    development
-    messaging
     browser
     gaming
     yubikey

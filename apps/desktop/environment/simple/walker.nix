@@ -85,9 +85,7 @@
         };
       };
     };
-  };
 
-  flake.modules.nixos.desktop-simple = {
-    preserve.users.directories = [".cache/elephant/"];
+    home.preserve.directories = [".cache/elephant/"];
   };
 }

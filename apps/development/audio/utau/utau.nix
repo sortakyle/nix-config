@@ -10,11 +10,7 @@
     ];
 
     xdg.dataFile."OpenUtau/Templates/default.ustx".source = ./default.ustx;
-  };
 
-  flake.modules.nixos.development = {
-    preserve.users.directories = [
-      ".local/share/OpenUtau"
-    ];
+    home.preserve.directories = [".local/share/OpenUtau"];
   };
 }

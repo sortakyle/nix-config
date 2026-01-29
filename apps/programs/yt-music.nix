@@ -9,9 +9,7 @@
         "float on, animation popout, match:class com.github.th_ch.youtube_music"
       ];
     };
-  };
 
-  flake.modules.nixos.programs = {
-    preserve.users.directories = [".config/YouTube Music"];
+    home.preserve.directories = [".config/YouTube Music"];
   };
 }
